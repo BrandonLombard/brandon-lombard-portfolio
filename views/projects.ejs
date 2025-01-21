@@ -1,0 +1,19 @@
+<section class="projects">
+    <h1 class="merriweather">My Projects</h1>
+    <p class="description">Below are some of the projects I have worked on. Click on any project to visit it.</p>
+    <div class="project-list">
+        <% projects.forEach(project=> { %>
+            <div class="project-card">
+                <a href="<%= project.link %>" target="_blank">
+                    <h2>
+                        <%= project.title %>
+                    </h2>
+                    <p>
+                        <%= project.description %>
+                    </p>
+                    <img src="<%= project.image %>" />
+                </a>
+            </div>
+            <% }) %>
+    </div>
+</section>

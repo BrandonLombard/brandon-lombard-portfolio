@@ -1,0 +1,54 @@
+/* Landing Section */
+.landing {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* Full viewport height */
+    color: var(--color-text);
+    text-align: center;
+}
+
+.landing-container {
+    max-width: 600px;
+    padding: 1rem;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.landing h1 {
+    font-size: 3rem;
+    color: var(--color-heading);
+    margin-bottom: 1rem;
+}
+
+.landing p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--color-text);
+    line-height: 1.5;
+}
+
+/* View My Work button on index.ejs */
+.cta-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    transition: 0.5s;
+    background-color: var(--color-primary);
+    color: var(--color-header);
+}
+
+.landing-container img {
+    width: 40%;
+    height: auto;
+    border-radius: 50%;
+}

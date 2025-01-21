@@ -1,0 +1,220 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
+/* Root Variables */
+:root {
+    --color-background: #ffffff; /* Clean white background */
+    --color-header: #f4f5f7; /* Soft light gray for header and footer */
+    --color-text: #333333; /* Dark gray for main text */
+    --color-text-muted: #6c757d; /* Muted gray for secondary text */
+    --color-heading: #2d2c2c; /* Rich black for headings */
+    --color-primary: #007bff; /* Vibrant blue for links and accents */
+    --color-primary-hover: #0056b3; /* Darker blue for hover states */
+    --box-shadow: rgba(0, 0, 0, 0.1); /* Subtle shadow for header and cards */
+    --box-shadow-nav: rgba(0, 0, 0, 0.15); /* Enhanced shadow for mobile navigation */
+}
+
+/* General Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    /* Modern font */
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Header */
+header {
+    background-color: var(--color-header);
+    padding: 0.5rem 0; /* Reduced padding for a thinner header */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px var(--box-shadow);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    color: var(--color-heading);
+    text-decoration: none;
+    font-size: 1.5rem; /* Slightly smaller logo text size for balance */
+    font-weight: 700;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: var(--color-text);
+    padding: 0.5rem;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.nav-list li a:hover {
+    color: var(--color-primary);
+}
+
+/* Custom styling for the current page in the nav bar */
+.current-page {
+    border-bottom: 1px solid var(--color-primary);
+}
+
+/* Mobile Navigation */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-toggle .hamburger {
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-text);
+    display: block;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-toggle .hamburger::before,
+.nav-toggle .hamburger::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-text);
+    left: 0;
+    transition: all 0.3s ease;
+}
+
+.nav-toggle .hamburger::before {
+    top: -8px;
+}
+
+.nav-toggle .hamburger::after {
+    top: 8px;
+}
+
+@media (max-width: 768px) {
+    .nav-list {
+        display: none;
+        flex-direction: column;
+        background-color: var(--color-header);
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 75%;
+        padding: 1rem;
+        box-shadow: 0 5px 15px var(--box-shadow-nav);
+    }
+
+    .nav-list.active {
+        display: flex;
+    }
+
+    .nav-list li {
+        margin-bottom: 1rem;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+}
+
+/* Main Content */
+main {
+    margin-top: 2rem;
+}
+
+main h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-heading);
+}
+
+main p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text);
+}
+
+main a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+main a:hover {
+    color: var(--color-primary-hover);
+}
+
+/* Footer */
+footer {
+    background-color: var(--color-header);
+    padding: 1rem 0;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+footer p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
+
+footer a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+main {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.merriweather {
+    font-family: "Merriweather", serif;
+}

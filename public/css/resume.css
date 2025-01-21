@@ -1,0 +1,99 @@
+.resume {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.resume h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #2c3e50;
+    font-family: 'Merriweather', serif;
+}
+
+.resume .description {
+    text-align: center;
+    font-size: 1rem;
+    color: #7f8c8d;
+    margin-bottom: 40px;
+}
+
+.resume-section {
+    padding: 10px 0;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #34495e;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 10px;
+}
+
+/* Education Card */
+.card {
+    margin-bottom: 30px;
+    padding: 15px;
+    background: #f7f7f7;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card-type {
+    font-size: 1.5rem;
+    color: #2980b9;
+    margin-bottom: 10px;
+}
+
+.card-name {
+    margin-top: -12px;
+}
+
+.card-name,
+.concentration,
+.school,
+.graduation-date {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.concentration {
+    font-style: italic;
+}
+
+.school,
+.graduation-date {
+    font-weight: bold;
+    color: #34495e;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .resume {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    .resume h1 {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .card-type {
+        font-size: 1.2rem;
+    }
+}

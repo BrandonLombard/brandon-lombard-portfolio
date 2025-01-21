@@ -1,0 +1,79 @@
+<section class="resume">
+    <h1 class="merriweather">Resume</h1>
+    <p class="description">This is a description.</p>
+
+    <!-- Work Experience Section -->
+    <div class="resume-section">
+        <h2 class="section-title">Work Experience</h2>
+        <% workExperience.forEach(job=> { %>
+            <div class="card">
+                <h3 class="card-type">
+                    <%= job.title %>
+                </h3>
+                <p class="card-name">
+                    <%= job.company %>
+                </p>
+                <%= job.start_date ? (()=> {
+                    const date = new Date(job.start_date);
+                    const utcMonth = (date.getUTCMonth() + 1).toString().padStart(2, '0'); // Month in UTC
+                    const utcDay = date.getUTCDate().toString().padStart(2, '0'); // Day in UTC
+                    const utcYear = date.getUTCFullYear(); // Year in UTC
+                    return `${utcMonth}/${utcDay}/${utcYear}`;
+                    })()
+                    : 'Current'
+                %> - 
+                <%= job.end_date ? (()=> {
+                    const date = new Date(job.end_date);
+                    const utcMonth = (date.getUTCMonth() + 1).toString().padStart(2, '0'); // Month in UTC
+                    const utcDay = date.getUTCDate().toString().padStart(2, '0'); // Day in UTC
+                    const utcYear = date.getUTCFullYear(); // Year in UTC
+                    return `${utcMonth}/${utcDay}/${utcYear}`;
+                    })()
+                    : 'Current'
+                %>
+                    
+                    <ul>
+                        <% job.bullet_points.forEach(bullet=> { %>
+                            <li><%= bullet %></li>
+                        <% }) %>
+                    </ul>
+                    
+            </div>
+            <% }) %>
+    </div>
+
+    <!-- Education Section -->
+    <div class="resume-section">
+        <h2 class="section-title">Education</h2>
+        <% education.forEach(degree=> { %>
+            <div class="card">
+                <h3 class="card-type">
+                    <%= degree.type %>
+                </h3>
+                <p class="card-name">
+                    <%= degree.name %>
+                </p>
+                <% if (degree.concentration) { %>
+                    <p class="concentration"><strong>Concentration:</strong>
+                        <%= degree.concentration %>
+                    </p>
+                    <% } %>
+                        <p class="school"><strong>School:</strong>
+                            <%= degree.school %>
+                        </p>
+                        <p class="graduation-date">
+                            <strong>Graduated:</strong>
+                            <%= degree.date_graduated ? (()=> {
+                                const date = new Date(degree.date_graduated);
+                                const utcMonth = (date.getUTCMonth() + 1).toString().padStart(2, '0'); // Month in UTC
+                                const utcDay = date.getUTCDate().toString().padStart(2, '0'); // Day in UTC
+                                const utcYear = date.getUTCFullYear(); // Year in UTC
+                                return `${utcMonth}/${utcDay}/${utcYear}`;
+                                })()
+                                : 'Not Yet'
+                                %>
+                        </p>
+            </div>
+            <% }) %>
+    </div>
+</section>
