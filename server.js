@@ -7,7 +7,7 @@ require('dotenv').config(); // Load environment variables
 
 // -------------------- App Configuration --------------------
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;;
 
 // Set view engine and layouts
 app.set('view engine', 'ejs');
