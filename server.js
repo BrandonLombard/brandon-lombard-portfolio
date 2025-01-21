@@ -68,7 +68,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-    res.render('about', { title: 'About Us' });
+    res.render('about', { title: 'About' });
 });
 
 app.get('/projects', async (req, res) => {
@@ -94,7 +94,7 @@ app.get('/resume', async (req, res) => {
 });
 
 app.get('/contact', (req, res) => {
-    res.render('contact', { title: 'Contact Me' });
+    res.render('contact', { title: 'Contact' });
 });
 
 // -------------------- Start Server --------------------
