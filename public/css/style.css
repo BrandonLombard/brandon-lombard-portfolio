@@ -48,11 +48,38 @@ header .container {
     align-items: center;
 }
 
-.logo a {
-    color: var(--color-heading);
+/* Logo Container */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo Styles */
+.logo {
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    font-size: 1.5rem; /* Slightly smaller logo text size for balance */
+}
+
+.logo img {
+    height: 60px; /* Adjusted for better balance */
+    width: 70px;
+    margin-right: 0.5rem; /* Space between image and text */
+    border: 1px solid black;
+}
+
+.logo img:hover {
+    transform: 0.5s;
+    border: 1px solid var(--color-primary-hover);
+}
+
+.logo-text {
+    font-size: 1.5rem;
     font-weight: 700;
+    color: var(--color-heading);
+    text-transform: uppercase;
+    font-family: "Merriweather", serif;
+    letter-spacing: 1px; /* Slight spacing for readability */
 }
 
 .nav {

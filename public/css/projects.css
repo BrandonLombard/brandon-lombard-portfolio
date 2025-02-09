@@ -10,6 +10,63 @@
     margin-bottom: 1rem;
 }
 
+
+/* Styling for filters section */
+
+/* Container for the project filters */
+.project-filters {
+    padding: 1em;
+}
+
+/* Title for the filter section */
+.project-filters h2 {
+    font-size: 1.5em;
+    margin-bottom: 0.75em;
+    color: #333;
+}
+
+/* Container for the filter options (checkboxes and labels) */
+.filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    align-items: center;
+}
+
+/* Style the checkboxes */
+.filter-checkbox {
+    /* Optional: increase clickable area by enlarging the checkbox */
+    width: 18px;
+    height: 18px;
+    margin-right: 0.3em;
+}
+
+/* Style the labels for checkboxes */
+.filter-options label {
+    font-size: 1em;
+    margin-right: 1.5em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: #555;
+}
+
+/* Optional: add a hover effect to labels */
+.filter-options label:hover {
+    color: #000;
+}
+
+/* Responsive adjustments if needed */
+@media (max-width: 600px) {
+    .filter-options {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .filter-options label {
+        margin-right: 0;
+    }
+}
+
 .projects .description {
     text-align: center;
     font-size: 1.2rem;

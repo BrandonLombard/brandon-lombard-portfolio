@@ -1,6 +1,25 @@
 <section class="projects">
     <h1 class="merriweather">My Projects</h1>
     <p class="description">Below are some of the projects I have worked on. Click on any project to visit it.</p>
+
+    <!-- Filter section -->
+    <section class="project-filters">
+        <h2>Filter Projects</h2>
+        <div class="filter-options">
+            <input type="checkbox" class="filter-checkbox" name="all" value="All Projects">
+            <label for="all">All Projects</label>
+            <% const uniqueCategories=[...new Set(projects.map(project=> project.category))];
+                uniqueCategories.forEach(category => {
+                %>
+                <input type="checkbox" class="filter-checkbox" name="<%= category %>" value="<%= category %>">
+                <label for="<%= category %>">
+                    <%= category %>
+                </label>
+                <% }); %>
+        </div>
+    </section>
+
+    <!-- List of projects -->
     <div class="project-list">
         <% projects.forEach(project=> { %>
             <div class="project-card">
@@ -12,6 +31,9 @@
                         <%= project.description %>
                     </p>
                     <img src="<%= project.image %>" />
+                    <p>
+                        <%= project.category %>
+                    </p>
                 </a>
             </div>
             <% }) %>

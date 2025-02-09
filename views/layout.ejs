@@ -18,7 +18,12 @@
 <body>
     <header>
         <div class="container">
-            <h1 class="logo merriweather"><a href="/">Brandon Lombard</a></h1>
+            <div class="logo-container">
+                <a href="/" class="logo">
+                    <img src="/images/logo.png" alt="Brandon Lombard Logo">
+                    <span class="logo-text">Brandon Lombard</span>
+                </a>
+            </div>
             <nav class="nav">
                 <button class="nav-toggle" aria-label="toggle navigation">
                     <span class="hamburger"></span>
@@ -42,7 +47,8 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Brandon Lombard</p>
+            <!-- This copyright text and year autofills from script.js -->
+            <p id="copyright"></p>
         </div>
     </footer>
 

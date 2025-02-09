@@ -3,29 +3,23 @@
         <img src="/images/profile.png" alt="Brandon Lombard Profile Picture">
         <div class="profile-info">
             <h1>Brandon Lombard</h1>
-            <p>Empowering healthcare through innovative software, inspiring the next generation of coders, and cherishing life with family in Southern New Hampshire.</p>
+            <p><%= about.tagline %></p>
         </div>
     </div>
 
     <div class="interests-container">
         <h2>My Interests</h2>
         <div class="tags">
-            <div class="tag">Web Development</div>
-            <div class="tag">AI & Machine Learning</div>
-            <div class="tag">Game Development</div>
-            <div class="tag">Education</div>
-            <div class="tag">Health Informatics</div>
-            <div class="tag">Martial Arts</div>
-            <div class="tag">Technology</div>
-            <div class="tag">Finance</div>
+            <% about.interests.forEach(function(interest) { %>
+                <div class="tag"><%= interest %></div>
+            <% }); %>
         </div>
     </div>
 
     <div class="about-me-container">
         <h2>About Me</h2>
-        <p>I am a dedicated software developer with a passion for creating innovative healthcare solutions that improve workflows and enhance patient care. As the sole manager of the EHR codebase at Riverbend Community Mental Health, I take pride in developing systems that streamline processes and support healthcare professionals in delivering exceptional service. Beyond my work in health informatics, I have a deep-seated love for computer science and enjoy teaching others, helping them unlock their potential in coding and technology. My passion for education extends to my role as a curriculum developer at CodeWizardsHQ, where I design engaging courses that inspire the next generation of programmers.</p>
-        <p>Family is at the core of everything I do. I love spending quality time with my wife and kids, creating memories that I cherish deeply. Whether it’s a weekend adventure in Southern New Hampshire, where we reside, or simply enjoying each other’s company at home, family time brings me immense joy and fulfillment. My commitment to providing a strong foundation for my family fuels my drive to excel in my career and explore opportunities that allow us to thrive together.</p>
-        <p>Outside of work and family, I have a variety of interests that keep me grounded and motivated. Martial arts, particularly Brazilian Jiu-Jitsu, kickboxing, and wrestling, are a significant part of my life, helping me stay active and disciplined. My time serving in the U.S. Army instilled in me a strong sense of resilience, teamwork, and dedication, values that continue to shape my personal and professional endeavors. Living in the serene landscape of Southern New Hampshire, I feel inspired to pursue my passions, whether it’s advancing healthcare technology, teaching computer science, or spending time with the people I care about most.
-        </p>
+        <% about.about_me.forEach(function(paragraph) { %>
+            <p><%= paragraph %></p>
+        <% }); %>
     </div>
 </section>
