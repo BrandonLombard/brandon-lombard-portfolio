@@ -7,9 +7,9 @@
         <h2 class="section-title">Work Experience</h2>
         <% workExperience.forEach(job=> { %>
             <div class="card">
-                <h3 class="card-type">
+                <div class="card-type">
                     <%= job.title %>
-                </h3>
+                </div>
                 <p class="card-name">
                     <%= job.company %>
                 </p>
@@ -47,9 +47,9 @@
         <h2 class="section-title">Education</h2>
         <% education.forEach(degree=> { %>
             <div class="card">
-                <h3 class="card-type">
+                <div class="card-type">
                     <%= degree.type %>
-                </h3>
+                </div>
                 <p class="card-name">
                     <%= degree.name %>
                 </p>

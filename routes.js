@@ -11,7 +11,8 @@ const projectSchema = new mongoose.Schema({
     description: { type: String, required: true },
     category: {type: String, required: true},
     image: { type: String, required: true},
-    link: { type: String, required: true }
+    link: { type: String, required: true },
+    last_updated:{ type: Date, required: true }
 });
 
 const Project = mongoose.model('projects', projectSchema);
@@ -75,6 +76,7 @@ router.get('/about', async (req, res) => {
 router.get('/projects', async (req, res) => {
     try {
         const projects = await Project.find(); // Fetch all projects from MongoDB
+        projects.sort((a, b) => new Date(b.last_updated) - new Date(a.last_updated)); // Sort newest to oldest
         res.render('projects', { projects, title: 'Projects' });
     } catch (err) {
         console.error('Error fetching projects:', err);

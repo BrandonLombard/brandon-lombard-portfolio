@@ -34,7 +34,7 @@
     padding-bottom: 10px;
 }
 
-/* Education Card */
+/* Work Experience and Education Cards */
 .card {
     margin-bottom: 30px;
     padding: 15px;
@@ -53,6 +53,7 @@
     font-size: 1.5rem;
     color: #2980b9;
     margin-bottom: 10px;
+    font-weight: bold;
 }
 
 .card-name {

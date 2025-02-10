@@ -1,12 +1,12 @@
 <section class="projects">
     <h1 class="merriweather">My Projects</h1>
-    <p class="description">Below are some of the projects I have worked on. Click on any project to visit it.</p>
+    <p class="description">Below are some of the projects I have worked on. Click on a project to view more information.</p>
 
     <!-- Filter section -->
     <section class="project-filters">
         <h2>Filter Projects</h2>
         <div class="filter-options">
-            <input type="checkbox" class="filter-checkbox" name="all" value="All Projects">
+            <input type="checkbox" class="filter-checkbox" name="all" value="All Projects" checked>
             <label for="all">All Projects</label>
             <% const uniqueCategories=[...new Set(projects.map(project=> project.category))];
                 uniqueCategories.forEach(category => {
@@ -20,9 +20,9 @@
     </section>
 
     <!-- List of projects -->
-    <div class="project-list">
+    <div class="project-list" id="project-list">
         <% projects.forEach(project=> { %>
-            <div class="project-card">
+            <div class="project-card" data-category="<%= project.category %>">
                 <a href="<%= project.link %>" target="_blank">
                     <h2>
                         <%= project.title %>
@@ -34,6 +34,7 @@
                     <p>
                         <%= project.category %>
                     </p>
+                    <p>Last Updated: <%= new Date(project.last_updated).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) %> %></p>
                 </a>
             </div>
             <% }) %>
