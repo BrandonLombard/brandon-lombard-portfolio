@@ -1,5 +1,5 @@
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 /* Root Variables */
 :root {
@@ -61,16 +61,32 @@ header .container {
     text-decoration: none;
 }
 
-.logo img {
-    height: 60px; /* Adjusted for better balance */
-    width: 70px;
-    margin-right: 0.5rem; /* Space between image and text */
-    border: 1px solid black;
+.logo-letters {
+    position: relative;
+    min-width: 60px;
+    min-height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1.3px solid black;
 }
 
-.logo img:hover {
-    transform: 0.5s;
-    border: 1px solid var(--color-primary-hover);
+.letter {
+    position: absolute;
+    color: black;
+    font-size: 35px;
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-weight: 300;
+    margin-top: -5px;
+}
+
+.B {
+    z-index: 2;
+}
+
+.L {
+    z-index: 1;
+    transform: translate(5px, 5px);
 }
 
 .logo-text {
@@ -79,7 +95,8 @@ header .container {
     color: var(--color-heading);
     text-transform: uppercase;
     font-family: "Merriweather", serif;
-    letter-spacing: 1px; /* Slight spacing for readability */
+    letter-spacing: 1px;
+    padding-left: 15px;
 }
 
 .nav {

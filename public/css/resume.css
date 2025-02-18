@@ -16,10 +16,10 @@
 }
 
 .resume .description {
-    text-align: center;
+    text-align: justify;
     font-size: 1rem;
     color: #7f8c8d;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
 }
 
 .resume-section {

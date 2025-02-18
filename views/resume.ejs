@@ -1,6 +1,11 @@
 <section class="resume">
     <h1 class="merriweather">Resume</h1>
-    <p class="description">This is a description.</p>
+    <p class="description">Results-driven Health Informatics Specialist and Full-Stack Developer with a passion for
+        leveraging technology to improve healthcare workflows and enhance patient care. Skilled in EHR system
+        development, backend optimization, and full-stack application design, with a strong focus on creating secure,
+        efficient, and user-friendly solutions. Seeking a role where I can apply my expertise in health tech and
+        programming education to drive innovation, streamline processes, and empower professionals in the healthcare and
+        technology sectors.</p>
 
     <!-- Work Experience Section -->
     <div class="resume-section">
@@ -21,23 +26,25 @@
                     return `${utcMonth}/${utcDay}/${utcYear}`;
                     })()
                     : 'Current'
-                %> - 
-                <%= job.end_date ? (()=> {
-                    const date = new Date(job.end_date);
-                    const utcMonth = (date.getUTCMonth() + 1).toString().padStart(2, '0'); // Month in UTC
-                    const utcDay = date.getUTCDate().toString().padStart(2, '0'); // Day in UTC
-                    const utcYear = date.getUTCFullYear(); // Year in UTC
-                    return `${utcMonth}/${utcDay}/${utcYear}`;
-                    })()
-                    : 'Current'
-                %>
-                    
-                    <ul>
-                        <% job.bullet_points.forEach(bullet=> { %>
-                            <li><%= bullet %></li>
-                        <% }) %>
-                    </ul>
-                    
+                    %> -
+                    <%= job.end_date ? (()=> {
+                        const date = new Date(job.end_date);
+                        const utcMonth = (date.getUTCMonth() + 1).toString().padStart(2, '0'); // Month in UTC
+                        const utcDay = date.getUTCDate().toString().padStart(2, '0'); // Day in UTC
+                        const utcYear = date.getUTCFullYear(); // Year in UTC
+                        return `${utcMonth}/${utcDay}/${utcYear}`;
+                        })()
+                        : 'Current'
+                        %>
+
+                        <ul>
+                            <% job.bullet_points.forEach(bullet=> { %>
+                                <li>
+                                    <%= bullet %>
+                                </li>
+                                <% }) %>
+                        </ul>
+
             </div>
             <% }) %>
     </div>
