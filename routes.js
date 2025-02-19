@@ -48,6 +48,17 @@ const workExperienceSchema = new mongoose.Schema({
 
 const WorkExperience = mongoose.model('work_experience', workExperienceSchema);
 
+// Contact Page 
+const contactSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    phoneNumber: {type: String, required: false},
+    message: { type: String, required: true },
+    createdAt: { type: Date, default: Date.now }
+});
+
+const Contact = mongoose.model("Contact", contactSchema);
+
 // ------------------------------------------------
 //                      Routes                    -
 // ------------------------------------------------
@@ -100,6 +111,49 @@ router.get('/resume', async (req, res) => {
 // Contact route
 router.get('/contact', (req, res) => {
     res.render('contact', { title: 'Contact' });
+});
+
+// Handle Contact Form Submission with Turnstile CAPTCHA Verification
+router.post("/submit-form", async (req, res) => {
+    try {
+        const { name, email, phone, message } = req.body;
+        const token = req.body["cf-turnstile-response"];
+
+        // Check for missing form fields
+        if (!name || !email || !message) {
+            return res.status(400).json({ success: false, message: "Name, email, and message are required." });
+        }
+
+        // Check if CAPTCHA token is present
+        if (!token) {
+            return res.status(400).json({ success: false, message: "CAPTCHA verification failed. Please try again." });
+        }
+
+        // Verify Turnstile CAPTCHA with Cloudflare
+        const captchaVerifyUrl = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+        const captchaResponse = await axios.post(
+            captchaVerifyUrl,
+            new URLSearchParams({
+                secret: process.env.TURNSTILE_SECRET_KEY,
+                response: token
+            }).toString(),
+            { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
+        );
+
+        // If CAPTCHA verification failed, return error
+        if (!captchaResponse.data.success) {
+            return res.status(400).json({ success: false, message: "CAPTCHA verification failed." });
+        }
+
+        // Save form data to MongoDB
+        const newContact = new Contact({ name, email, phoneNumber: phone, message });
+        await newContact.save();
+
+        res.status(201).json({ success: true, message: "Message received! We will get back to you soon." });
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).json({ success: false, message: "Server Error" });
+    }
 });
 
 module.exports = router;

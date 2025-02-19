@@ -10,6 +10,10 @@ const routes = require('./routes'); // Load routes
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Middleware for parsing request bodies 
+app.use(express.json()); // Parse JSON data
+app.use(express.urlencoded({ extended: true })); // Parse form data
+
 // Set view engine and layouts
 app.set('view engine', 'ejs');
 app.use(ejsLayouts);

@@ -1,8 +1,9 @@
 <section class="contact">
     <div class="container">
         <h1>Contact Me</h1>
-        <p>If you'd like to get in touch, feel free to fill out the form below. I'll get back to you as soon as possible!</p>
-        <form action="/contact" method="POST" class="contact-form">
+        <p>If you'd like to get in touch, fill out the form below.</p>
+        
+        <form id="contactForm" action="/submit-form" method="POST">
             <div class="form-group">
                 <label for="name">Name <span class="required">*</span></label>
                 <input type="text" id="name" name="name" required>
@@ -19,7 +20,15 @@
                 <label for="message">Message <span class="required">*</span></label>
                 <textarea id="message" name="message" rows="5" required></textarea>
             </div>
+
+            <!-- Cloudflare Turnstile CAPTCHA -->
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAA9Xalyc_NxIWaEU"></div>
+
+            <!-- Submit Button -->
             <button type="submit" class="btn-submit">Send Message</button>
         </form>
     </div>
 </section>
+
+<!-- Load Turnstile Script -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>

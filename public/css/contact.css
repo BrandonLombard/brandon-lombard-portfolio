@@ -75,3 +75,8 @@
 .btn-submit:hover {
     background-color: var(--color-primary-hover);
 }
+
+/* Cloudflare CAPTCHA styling */
+.cf-turnstile {
+    margin-top: 10px;
+}
