@@ -3,6 +3,7 @@
 // ------------------------------------------------
 //           Mongoose Schema and Models           -
 // ------------------------------------------------
+const axios = require("axios");
 const mongoose = require('mongoose');
 
 // Portfolio page
@@ -110,7 +111,7 @@ router.get('/resume', async (req, res) => {
 
 // Contact route
 router.get('/contact', (req, res) => {
-    res.render('contact', { title: 'Contact' });
+    res.render('contact', { title: 'Contact', scucess: null, error: null });
 });
 
 // Handle Contact Form Submission with Turnstile CAPTCHA Verification
@@ -121,12 +122,18 @@ router.post("/submit-form", async (req, res) => {
 
         // Check for missing form fields
         if (!name || !email || !message) {
-            return res.status(400).json({ success: false, message: "Name, email, and message are required." });
+            return res.status(400).render("contact", { 
+                title: "Contact", 
+                error: "Name, email, and message are required." 
+            });
         }
 
         // Check if CAPTCHA token is present
         if (!token) {
-            return res.status(400).json({ success: false, message: "CAPTCHA verification failed. Please try again." });
+            return res.status(400).render("contact", { 
+                title: "Contact", 
+                error: "CAPTCHA verification failed. Please try again." 
+            });
         }
 
         // Verify Turnstile CAPTCHA with Cloudflare
@@ -140,20 +147,32 @@ router.post("/submit-form", async (req, res) => {
             { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
         );
 
-        // If CAPTCHA verification failed, return error
         if (!captchaResponse.data.success) {
-            return res.status(400).json({ success: false, message: "CAPTCHA verification failed." });
+            return res.status(400).render("contact", { 
+                title: "Contact", 
+                error: "CAPTCHA verification failed. Please try again." 
+            });
         }
 
         // Save form data to MongoDB
         const newContact = new Contact({ name, email, phoneNumber: phone, message });
         await newContact.save();
 
-        res.status(201).json({ success: true, message: "Message received! We will get back to you soon." });
+        // Render the contact page with success message
+        res.render("contact", { 
+            title: "Contact", 
+            success: "Message received! I will get back to you soon.", 
+            hideForm: true 
+        });
+
     } catch (error) {
         console.error("Error:", error);
-        res.status(500).json({ success: false, message: "Server Error" });
+        res.status(500).render("contact", { 
+            title: "Contact", 
+            error: "Server Error. Please try again later." 
+        });
     }
 });
+
 
 module.exports = router;
