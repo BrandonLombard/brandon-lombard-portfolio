@@ -36,8 +36,12 @@ mongoose
         console.error('Could not connect to MongoDB:', err);
     });
 
-// -------------------- Routes and Mongoose Schema/Models help in routes.js --------------------
+// -------------------- Portfolio Site Routes and Mongoose Schema/Models help in routes.js --------------------
 app.use('/', routes);
+
+// -------------------- Saint Gloopy Noops EHR Project routes --------------------
+const EHR_routes = require('./portfolio_projects/saint_gloopy_noops/routes'); // Load routes
+app.use('/saint-gloopy-noops', EHR_routes);
 
 // -------------------- Start Server --------------------
 app.listen(PORT, () => {

@@ -46,6 +46,13 @@
         <div class="container">
             <%- body %> <!-- Content from other views will be injected here -->
         </div>
+        <div id="chatbot-container">
+            <div id="chatbox">
+                <div id="chat-messages"></div>
+                <input type="text" id="chat-input" placeholder="Ask me anything..." />
+                <button id="send-chat">Send</button>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -56,6 +63,7 @@
     </footer>
 
     <script src="/js/script.js"></script>
+    <script src="/js/chatbot.js"></script>
 </body>
 
 </html>

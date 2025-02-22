@@ -242,6 +242,52 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* Chatbot Stuff */
+
+#chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+#chatbox {
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    padding: 10px;
+}
+
+#chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#chat-input {
+    width: 80%;
+    padding: 5px;
+    border: none;
+    outline: none;
+}
+
+#send-chat {
+    width: 20%;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#send-chat:hover {
+    background: #0056b3;
+}
+
 /* Animations */
 @keyframes fadeIn {
     from {

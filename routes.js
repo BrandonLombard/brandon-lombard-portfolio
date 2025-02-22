@@ -5,6 +5,7 @@
 // ------------------------------------------------
 const axios = require("axios");
 const mongoose = require('mongoose');
+const OpenAI = require("openai"); // Import OpenAI library
 
 // Portfolio page
 const projectSchema = new mongoose.Schema({
@@ -59,6 +60,11 @@ const contactSchema = new mongoose.Schema({
 });
 
 const Contact = mongoose.model("Contact", contactSchema);
+
+// OpenAI API Setup
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY, // Load API key from .env file
+});
 
 // ------------------------------------------------
 //                      Routes                    -
@@ -173,6 +179,28 @@ router.post("/submit-form", async (req, res) => {
         });
     }
 });
+
+// OpenAI Chat Route
+router.post("/chat", async (req, res) => {
+    try {
+        const { message } = req.body;
+
+        if (!message) {
+            return res.status(400).json({ error: "Message is required." });
+        }
+
+        const completion = await openai.chat.completions.create({
+            model: "gpt-4o-mini",
+            messages: [{ role: "user", content: message }],
+        });
+
+        res.json({ response: completion.choices[0].message.content });
+    } catch (error) {
+        console.error("OpenAI API Error:", error);
+        res.status(500).json({ error: "Something went wrong with the AI response." });
+    }
+});
+
 
 
 module.exports = router;
