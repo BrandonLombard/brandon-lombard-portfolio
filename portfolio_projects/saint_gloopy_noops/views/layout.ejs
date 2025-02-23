@@ -7,7 +7,8 @@
     <title>
         <%= title %>
     </title>
-    <link rel="stylesheet" href="/css/portfolio_projects/saint_gloopy_noops/style.css">
+    <link rel="stylesheet" href="/css/portfolio_projects/saint_gloopy_noops/style.css"> <!-- Base Styles -->
+    <link rel="stylesheet" href="/css/portfolio_projects/saint_gloopy_noops/forms.css"> <!-- Form Styles -->
 </head>
 
 <body>
@@ -19,14 +20,14 @@
         <!-- Links - Only if user is accessing the dashboard -->
         <% if (currentPath==='/dashboard' ) { %>
             <div id="links">
-                <a href="/saint-gloopy-noops/dashboard">Dashboard</a> | 
-                <a href="#">Documentation View</a> | 
-                <a href="#">Widgets</a> | 
+                <a href="/saint-gloopy-noops/dashboard">Dashboard</a> |
+                <a href="#">Documentation View</a> |
+                <a href="#">Widgets</a> |
                 <a href="">Documentation</a>
             </div>
             <div id="account">
-                <a href="#">Settings</a> | 
-                <a href="#">Messages</a> | 
+                <a href="#">⚙️</a> |
+                <a href="#">✉️ 0</a> |
                 Signed in as <%- username %>
                     | <a href="/saint-gloopy-noops/logout">Logout</a>
             </div>
@@ -49,18 +50,33 @@
                 <p><strong>Next Appointment:</strong> Sometime</p>
             </div>
 
-            <a href="/saint-gloopy-noops/dashboard">🏥 Dashboard</a>
-            <a href="#">📄 Records</a>
-            <a href="#">📋 Appointments</a>
-            <a href="#">💊 Prescriptions</a>
+            <!-- Forms List -->
+            <a href="#">🏥 Patient Admission</a>
+            <a href="#">✌️ Patient Discharge</a>
+            <a href="#">📋 Appointment Scheduling</a>
+            <a href="#">💊 Medications List</a>
+            <a href="#">📂 Patient Data</a>
+            <a href="#">📄 Medical History</a>
+            <a href="#">📝 Progress Notes</a>
+            <a href="#">🧪 Lab Orders & Results</a>
+            <a href="#">💰 Billing & Insurance</a>
         </div>
         <% } %>
 
 
             <!-- Main Content Area -->
+
             <div class="main-content">
-                <%- body %> <!-- Inject other views -->
+                <% if (currentPath==='/dashboard' ) { %>
+                    <div id="searchbar">
+                        <input type="text" placeholder="Search">
+                        <button>🔎</button>
+                    </div>
+                    <% } %>
+                        <%- body %> <!-- Inject other views -->
+
             </div>
+
 
             <!-- Footer -->
             <footer>

@@ -33,8 +33,8 @@ router.post('/login', async (req, res) => {
 router.get('/signup', (req, res) => res.render('signup', { title: "Sign Up" }));
 router.post('/signup', async (req, res) => {
     try {
-        const { username, password } = req.body;
-        const user = new User({ username, password });
+        const { username, password, firstname, lastname } = req.body;
+        const user = new User({ username, password, firstname, lastname });
         await user.save();
         res.redirect('/saint-gloopy-noops/login');
     } catch (error) {
