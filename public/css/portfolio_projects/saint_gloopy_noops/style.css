@@ -1,0 +1,167 @@
+/* Set CSS Variables */
+:root {
+    --primary: #5e2b97; /* Dark Purple */
+    --secondary: #8c52ff; /* Medium Purple */
+    --background: #f4f0ff; /* Light Purple Background */
+    --text: #ffffff; /* White Text */
+    --sidebar-bg: #7036a8; /* Slightly Darker Purple for Sidebar */
+    --footer-bg: #4b1d77; /* Footer Background */
+}
+
+/* Reset Margin and Padding */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+    font-family: Arial, sans-serif;
+}
+
+/* Top Navigation Bar */
+header {
+    background-color: var(--primary);
+    color: var(--text);
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+/* Wraps logo, links, and account info properly */
+.header-content {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Header Logo */
+#logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Navigation Links */
+#links {
+    display: flex;
+    gap: 15px;
+    padding: 25px;
+}
+
+#links a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+#links a:hover {
+    text-decoration: underline;
+}
+
+/* Signed In Account Info - Aligns to the Right */
+#account {
+    font-size: 14px;
+    background-color: var(--sidebar-bg); /* Slightly darker purple */
+    padding: 5px 10px;
+    margin-right: 25px;
+    border-radius: 5px;
+    color: var(--text);
+    margin-left: auto;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 50px; /* Below header */
+    left: 0;
+    width: 250px;
+    height: calc(100vh - 50px); /* Full height minus header */
+    background-color: var(--sidebar-bg);
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar a {
+    display: block;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.sidebar a:hover {
+    background-color: var(--secondary);
+}
+
+/* Main Content Area */
+.main-content {
+    margin-left: 250px; /* Same width as sidebar */
+    margin-top: 60px; /* Offset from fixed header */
+    padding: 20px;
+}
+
+/* Footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: var(--footer-bg);
+    color: var(--text);
+    text-align: center;
+    line-height: 40px;
+    font-size: 14px;
+}
+
+/* Patient Data Section */
+#patient-data {
+    width: 90%;
+    background-color: var(--secondary);
+    color: var(--text);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Patient Profile Container */
+.patient-profile {
+    background-color: var(--background);
+    width: 90%;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.patient-profile p {
+    margin: 5px 0;
+}
+
+.patient-profile strong {
+    color: var(--primary);
+}
+
+#patient-data .profile-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+    margin-bottom: 10px;
+}

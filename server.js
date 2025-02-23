@@ -5,6 +5,7 @@ const ejs = require('ejs');
 const mongoose = require('mongoose');
 const ejsLayouts = require('express-ejs-layouts');
 require('dotenv').config(); // Load environment variables
+const session = require('express-session');
 const routes = require('./routes'); // Load routes
 
 // -------------------- App Configuration --------------------
@@ -14,6 +15,14 @@ const PORT = process.env.PORT || 3000;
 // Middleware for parsing request bodies 
 app.use(express.json()); // Parse JSON data
 app.use(express.urlencoded({ extended: true })); // Parse form data
+
+// Session
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // Set to `true` if using HTTPS
+}));
 
 // Set view engine and layouts
 app.set('view engine', 'ejs');

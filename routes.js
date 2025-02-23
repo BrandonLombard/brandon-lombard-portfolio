@@ -117,7 +117,7 @@ router.get('/resume', async (req, res) => {
 
 // Contact route
 router.get('/contact', (req, res) => {
-    res.render('contact', { title: 'Contact', scucess: null, error: null });
+    res.render('contact', { title: 'Contact', success: null, error: null });
 });
 
 // Handle Contact Form Submission with Turnstile CAPTCHA Verification

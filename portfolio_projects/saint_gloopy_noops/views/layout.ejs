@@ -7,27 +7,65 @@
     <title>
         <%= title %>
     </title>
-    <link rel="stylesheet" href="../style.css"> <!-- Base Styles -->
+    <link rel="stylesheet" href="/css/portfolio_projects/saint_gloopy_noops/style.css">
 </head>
 
 <body>
+    <!-- Top Navigation -->
     <header>
-        <div class="container">
-            Test
+        <div id="logo">
+            Saint Gloopy Noops Hospital
         </div>
+        <!-- Links - Only if user is accessing the dashboard -->
+        <% if (currentPath==='/dashboard' ) { %>
+            <div id="links">
+                <a href="/saint-gloopy-noops/dashboard">Dashboard</a> | 
+                <a href="#">Documentation View</a> | 
+                <a href="#">Widgets</a> | 
+                <a href="">Documentation</a>
+            </div>
+            <div id="account">
+                <a href="#">Settings</a> | 
+                <a href="#">Messages</a> | 
+                Signed in as <%- username %>
+                    | <a href="/saint-gloopy-noops/logout">Logout</a>
+            </div>
+            <% } %>
     </header>
 
-    <main>
-        <div class="container">
-            <%- body %> <!-- Content from other views will be injected here -->
+    <!-- Sidebar - Only if user is accessing the dashboard -->
+    <% if (currentPath==='/dashboard' ) { %>
+        <div class="sidebar">
+            <div id="patient-data">
+                <img src="/images/portfolio_projects/saint-gloopy-noops/default-avatar.jpg" alt="Patient Image"
+                    class="profile-image">
+                <p><strong>Patient Name</strong></p>
+            </div>
+
+            <div class="patient-profile">
+                <p><strong>Age:</strong> 0</p>
+                <p><strong>Blood Type:</strong> A POS</p>
+                <p><strong>Last Visit:</strong> Sometime </p>
+                <p><strong>Next Appointment:</strong> Sometime</p>
+            </div>
+
+            <a href="/saint-gloopy-noops/dashboard">🏥 Dashboard</a>
+            <a href="#">📄 Records</a>
+            <a href="#">📋 Appointments</a>
+            <a href="#">💊 Prescriptions</a>
         </div>
-    </main>
+        <% } %>
 
-    <footer>
-        Footer
-    </footer>
 
-    <script src="../script.js"></script>
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <%- body %> <!-- Inject other views -->
+            </div>
+
+            <!-- Footer -->
+            <footer>
+                &copy; 2025 Saint Gloopy Noops Hospital - All Rights Reserved
+            </footer>
 </body>
 
 </html>
