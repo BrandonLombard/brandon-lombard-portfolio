@@ -1,13 +1,4 @@
 /* Set CSS Variables */
-:root {
-    --primary: #5e2b97; /* Dark Purple */
-    --secondary: #8c52ff; /* Medium Purple */
-    --background: #f4f0ff; /* Light Purple Background */
-    --text: #ffffff; /* White Text */
-    --sidebar-bg: #7036a8; /* Slightly Darker Purple for Sidebar */
-    --footer-bg: #4b1d77; /* Footer Background */
-}
-
 form input[type="text"] {
     padding: 10px; /* Add padding */
     font-size: 16px; /* Increase font size */
@@ -53,8 +44,13 @@ form button {
     margin: 5px 1px; /* Top and bottom padding */
 }
 
+/* --------------------------- */
+/* Log in and Sign out styling */
+/* --------------------------- */
+
 .login-signup {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background: var(--background);
     padding: 10px;
     width: 350px;
     display: flex;
@@ -74,6 +70,25 @@ form button {
     flex-direction: column;
     gap: 10px;
 }
+
+/* Popup for if the user enters an incorrect username or password on login page */
+#popup {
+    display: none;
+    justify-content: center;
+    width: 80%;
+    background: #ff4444;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 2px;
+    font-size: 16px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+/* ----------------------- */
+/*      Media Queries      */
+/* ----------------------- */
 
 /* If height is less than 500px, increase login/signup margin */
 @media (max-height: 600px) {

@@ -1,14 +1,18 @@
+<script src="/js/portfolio_projects/gloopy_noops_hospital/handle-login.js"></script>
 <div class="login-signup">
     <h2>Login</h2>
-    <form action="/saint-gloopy-noops/login" method="POST">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
+    <div id="popup"></div>
+    <form action="/saint-gloopy-noops/login" method="POST" onsubmit="handleLogin(event)">
+        <input type="text" name="username" placeholder="Username" minlength="5" required>
+        <input type="password" name="password" placeholder="Password" minlength="8" required>
         
         <!-- Cloudflare Turnstile CAPTCHA -->
         <div class="cf-turnstile" data-sitekey="0x4AAAAAAA9Xalyc_NxIWaEU"></div>
 
         <button type="submit">Login</button>
     </form>
+
+    
 
     <a href="/saint-gloopy-noops/signup" class="form-link">Don't have an account? Sign up</a>
 </div>

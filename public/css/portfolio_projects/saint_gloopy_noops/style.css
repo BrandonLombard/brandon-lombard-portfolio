@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* Set CSS Variables */
 :root {
-    --primary: #5e2b97; /* Dark Purple */
-    --secondary: #8c52ff; /* Medium Purple */
-    --background: #f4f0ff; /* Light Purple Background */
-    --text: #ffffff; /* White Text */
-    --sidebar-bg: #7036a8; /* Slightly Darker Purple for Sidebar */
-    --footer-bg: #4b1d77; /* Footer Background */
+    --primary: #121C31; 
+    --secondary: #0C2D48;
+    --background: #f4f0ff;
+    --text: #ffffff; 
+    --sidebar-bg: #145DA0; 
+    --footer-bg: #121C31; 
 }
 
 /* Reset Margin and Padding */
@@ -15,6 +17,7 @@ body {
     background-color: var(--background);
     font-family: Arial, sans-serif;
     overflow: auto;
+    font-family: "Roboto", serif;
 }
 
 /* Top Navigation Bar */
@@ -46,6 +49,15 @@ header {
 #logo {
     font-size: 20px;
     font-weight: bold;
+    font-family: "Orbitron", serif;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+#logo img {
+    height: 30px;
+    width: auto;
 }
 
 /* Navigation Links */
@@ -67,13 +79,31 @@ header {
 
 /* Signed In Account Info - Aligns to the Right */
 #account {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 14px;
     background-color: var(--sidebar-bg); /* Slightly darker purple */
     padding: 5px 10px;
-    margin-right: 25px;
-    border-radius: 5px;
+    margin-right: 35px;
+    border-radius: 2px;
     color: var(--text);
     margin-left: auto;
+}
+
+#profile {
+    display: flex;
+    align-items: center;
+}
+
+#profile img {
+    margin-right: 5px;
+}
+
+#user-picture-icon {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
 }
 
 #account a {
@@ -87,7 +117,6 @@ header {
     top: 50px; /* Below header */
     left: 0;
     width: 250px;
-    
     background-color: var(--sidebar-bg);
     padding-top: 20px;
     display: flex;
@@ -132,28 +161,24 @@ footer {
 
 /* Patient Data Section */
 #patient-data {
-    width: 90%;
-    background-color: var(--secondary);
+    width: 100%;
+    background-color: var(--sidebar-bg);
     color: var(--text);
-    padding: 15px;
-    border-radius: 10px;
     text-align: center;
     font-size: 16px;
     font-weight: bold;
-    margin-bottom: 15px;
+    padding-top: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Patient Profile Container */
 .patient-profile {
     background-color: var(--background);
-    width: 90%;
-    padding: 10px;
-    border-radius: 8px;
-    text-align: left;
+    width: 100%;
     font-size: 14px;
     color: #333;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding-left: 5px;
 }
 
 .patient-profile p {
@@ -165,14 +190,12 @@ footer {
 }
 
 #patient-data .profile-image {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    border: 2px solid var(--primary);
-    margin-bottom: 10px;
 }
 
-#searchbar {
+.searchbar {
     width: 95%;
     height: 30px;
     display: flex;
@@ -184,7 +207,7 @@ footer {
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-#searchbar input {
+.searchbar input {
     width: 100%;
     border: none;
     outline: none;
@@ -193,13 +216,19 @@ footer {
     background: transparent;
 }
 
-#searchbar button {
+.searchbar button {
     border: none;
     background: none;
     cursor: pointer;
 }
 
-#searchbar button i {
+.searchbar button i {
     font-size: 18px;
     color: #888;
+}
+
+.hospital-image {
+    background: url('/images/portfolio_projects/saint-gloopy-noops/hospital.png');
+    background-size: cover;
+    height: 100vh;
 }

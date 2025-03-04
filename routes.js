@@ -6,60 +6,51 @@
 const axios = require("axios");
 const mongoose = require('mongoose');
 const OpenAI = require("openai"); // Import OpenAI library
+const { portfolioDB } = require('./server.js'); // Import Portfolio DB
 
 // Portfolio page
-const projectSchema = new mongoose.Schema({
+const Project = portfolioDB.model('projects', new mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
-    category: {type: String, required: true},
-    image: { type: String, required: true},
+    category: { type: String, required: true },
+    image: { type: String, required: true },
     link: { type: String, required: true },
-    last_updated:{ type: Date, required: true }
-});
-
-const Project = mongoose.model('projects', projectSchema);
+    last_updated: { type: Date, required: true }
+}));
 
 // About Page
-const aboutSchema = new mongoose.Schema({
+const About = portfolioDB.model('about', new mongoose.Schema({
     tagline: { type: String, required: true },
     interests: { type: [String], required: true },
-    about_me: { type: [String], required: true}
-});
-
-const About = mongoose.model('about', aboutSchema);
+    about_me: { type: [String], required: true }
+}));
 
 // Resume Page
-const educationSchema = new mongoose.Schema({
+const Education = portfolioDB.model('education', new mongoose.Schema({
     type: { type: String, required: true },
     name: { type: String, required: true },
-    concentration: {type: String, required: false},
+    concentration: { type: String, required: false },
     school: { type: String, required: true },
-    date_graduated: {type: Date, required: false}
-});
+    date_graduated: { type: Date, required: false }
+}));
 
-const Education = mongoose.model('education', educationSchema);
-
-const workExperienceSchema = new mongoose.Schema({
+const WorkExperience = portfolioDB.model('work_experience', new mongoose.Schema({
     title: { type: String, required: true },
     company: { type: String, required: true },
     start_date: { type: Date, required: true },
-    end_date: {type: Date, required: false},
-    bullet_points: {type: [String], required: true},
-    
-});
-
-const WorkExperience = mongoose.model('work_experience', workExperienceSchema);
+    end_date: { type: Date, required: false },
+    bullet_points: { type: [String], required: true }
+}));
 
 // Contact Page 
-const contactSchema = new mongoose.Schema({
+const Contact = portfolioDB.model("contact", new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
-    phoneNumber: {type: String, required: false},
+    phoneNumber: { type: String, required: false },
     message: { type: String, required: true },
     createdAt: { type: Date, default: Date.now }
-});
+}));
 
-const Contact = mongoose.model("Contact", contactSchema);
 
 // OpenAI API Setup
 const openai = new OpenAI({
@@ -82,7 +73,6 @@ router.get('/about', async (req, res) => {
     try {
         const about = await About.find(); 
         const aboutData = about[0];
-        console.log(about);
         res.render('about', { about: aboutData, title: 'About' });
     } catch (err) {
         console.error('Error fetching about information:', err);
@@ -101,6 +91,25 @@ router.get('/projects', async (req, res) => {
         res.status(500).send('Internal Server Error with /projects route.');
     }
 });
+
+// Academic Project Dynamic Route
+router.get('/academic/:type', (req, res) => {
+    const { type } = req.params;
+
+    // Define allowed static pages
+    const allowedPages = {
+        "system-proposal-document": "system-proposal-document",
+        "communication-framework-and-training-plan": "communication-framework-and-training-plan"
+    };
+
+    // Check if the requested type exists in allowedPages
+    if (allowedPages[type]) {
+        res.render(`academic/${allowedPages[type]}`, { title: "Academic Project" });
+    } else {
+        res.status(404).render("404", { title: "Page Not Found" });
+    }
+});
+
 
 // Resume route
 router.get('/resume', async (req, res) => {

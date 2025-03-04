@@ -1,32 +1,38 @@
-// -----------------------------------------------------------------------
-//                      Saint Gloopy Noops EHR Routes                    
-// -----------------------------------------------------------------------
 const express = require('express');
 const path = require('path'); 
-const User = require('./models/User');
+const { ehrDB } = require('../../server'); // Import EHR Database
+const User = require('./models/User')(ehrDB); 
 const router = express.Router();
 
 // Set a local views directory for this subproject
 router.use((req, res, next) => {
     req.app.set('views', path.join(__dirname, 'views')); // Set EHR views folder
-    res.locals.currentPath = req.path; // Makes `currentPath` available in EJS
+    res.locals.currentPath = req.path;
     next();
 });
 
 // Login Route
+router.get('/', (req, res) => res.render('login', { title: "Login" }));
 router.get('/login', (req, res) => res.render('login', { title: "Login" }));
 router.post('/login', async (req, res) => {
-    const { username, password } = req.body;
-    const user = await User.findOne({ username });
+    try {
+        const { username, password } = req.body;
+        const user = await User.findOne({ username });
 
-    if (!user || !(await user.comparePassword(password))) {
-        return res.status(400).send("Invalid username or password");
+        if (!user) {
+            return res.status(400).json({ error: "Incorrect username, please try again." });
+        } else if (!(await user.comparePassword(password))) {
+            return res.status(400).json({ error: "Incorrect password, please try again." });
+        }
+
+        req.session.userId = user._id;
+        req.session.username = user.username;
+
+        res.json({ success: true, redirect: "/saint-gloopy-noops/dashboard" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
     }
-
-    req.session.userId = user._id; // Store user session
-    req.session.username = user.username; // Store username in session
-
-    res.redirect('/saint-gloopy-noops/dashboard');
 });
 
 // Signup Route
@@ -38,6 +44,7 @@ router.post('/signup', async (req, res) => {
         await user.save();
         res.redirect('/saint-gloopy-noops/login');
     } catch (error) {
+        console.error(error);
         res.status(400).send("Error signing up. Please try again.");
     }
 });
