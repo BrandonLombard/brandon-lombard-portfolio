@@ -32,25 +32,30 @@ function initProjectFilters() {
 
     // Function to update project display based on selected checkboxes
     function updateProjectDisplay() {
-        const selectedCategories = [...checkboxes]
-            .filter(checkbox => checkbox.checked && checkbox.value !== "All Projects")
-            .map(checkbox => checkbox.value.trim()); // Trim spaces for better matching
-
-        // Get all project cards
-        const projectCards = projectList.querySelectorAll(".project-card");
-
+        const selectedCategories = [...document.querySelectorAll(".filter-options .filter-checkbox:checked")]
+            .map(checkbox => checkbox.value.trim())
+            .filter(value => value !== "All Projects");
+    
+        const projectCards = document.querySelectorAll(".project-card");
+    
         projectCards.forEach(card => {
-            const projectCategory = card.getAttribute("data-category")?.trim(); // Ensure category is clean
-
+            const projectCategories = card.dataset.categories 
+                ? card.dataset.categories.split(",").map(cat => cat.trim()) 
+                : [];
+    
+            // Log the project's category data
+            console.log(`Project: ${card.querySelector("h2")?.innerText || "Unnamed"} - Categories:`, projectCategories);
+    
             // If "All Projects" is checked OR no categories are selected, show all projects
-            if (allProjectsCheckbox.checked || selectedCategories.length === 0) {
+            if (selectedCategories.length === 0) {
                 card.style.display = "block";
             } else {
-                // Show only projects that match the selected categories
-                console.log(selectedCategories + projectCategory)
-                card.style.display = selectedCategories.includes(projectCategory) ? "block" : "none";
+                // Show project if it has at least one matching category
+                const hasMatchingCategory = selectedCategories.some(cat => projectCategories.includes(cat));
+                card.style.display = hasMatchingCategory ? "block" : "none";
             }
         });
+    
     }
 
     // Event listeners for checkboxes

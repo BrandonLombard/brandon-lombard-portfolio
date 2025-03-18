@@ -1,0 +1,58 @@
+/* Academic Projects Styling */
+.academic-paper {
+    font-family: "Times New Roman", Times, serif;
+}
+
+.academic-paper h3 {
+    text-align: center;
+}
+
+.academic-paper p {
+    text-indent: 50px;
+}
+
+.academic-paper img {
+    width: 60%;
+}
+
+/* APA Citation Styling */
+.citation {
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 800px;
+    text-align: left;
+}
+
+.citation .indent {
+    margin-left: 50px;
+    margin-bottom: 25px;
+}
+
+.citation a {
+    color: #1a0dab;
+    text-decoration: none;
+}
+
+.citation a:hover {
+    text-decoration: underline;
+}
+
+.academic-paper .academic-document-heading {
+    display: flex;
+}
+
+.academic-paper table {
+    width: 90%;
+    border-collapse: collapse;
+}
+
+.academic-paper th,
+td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+.academic-paper th {
+    background-color: #f2f2f2;
+}

@@ -24,9 +24,29 @@
                     <!-- Links - Only if user is accessing the dashboard -->
                     <% if (currentPath==='/dashboard' ) { %>
                         <div id="links">
-                            <a href="/saint-gloopy-noops/dashboard">Dashboard</a> |
-                            <a href="#">Widgets</a> |
-                            <a href="">Documentation</a> |
+                            <select name="clinical-forms" id="clinical-forms">
+                                <option value="">Clinical Forms</option>
+                                <option value="">Volvo</option>
+                                <option value="">Saab</option>
+                                <option value="">Mercedes</option>
+                                <option value="">Audi</option>
+                            </select>
+                            <select name="administrative-forms" id="administrative-forms">
+                                <option value="">Administrative Forms</option>
+                                <option value="">Volvo</option>
+                                <option value="">Saab</option>
+                                <option value="">Mercedes</option>
+                                <option value="">Audi</option>
+                            </select>
+
+                            <select name="billing-forms" id="billing-forms">
+                                <option value="">Billing Forms</option>
+                                <option value="">Volvo</option>
+                                <option value="">Saab</option>
+                                <option value="">Mercedes</option>
+                                <option value="">Audi</option>
+                            </select>
+
                             <a href="#" title="Settings">⚙️</a> |
                             <a href="#" title="Messages">✉️ 0</a>
                         </div>
@@ -58,15 +78,8 @@
                         </div>
 
                         <!-- Forms List -->
-                        <a href="#">🏥 Patient Admission</a>
-                        <a href="#">✌️ Patient Discharge</a>
-                        <a href="#">📋 Appointment Scheduling</a>
-                        <a href="#">💊 Medications List</a>
-                        <a href="#">📂 Patient Data</a>
-                        <a href="#">📄 Medical History</a>
-                        <a href="#">📝 Progress Notes</a>
-                        <a href="#">🧪 Lab Orders & Results</a>
-                        <a href="#">💰 Billing & Insurance</a>
+                        Hi<br>
+                        Hi<br>
                     </div>
                     <% } %>
 
@@ -80,7 +93,10 @@
                                     <button>🔎</button>
                                 </div>
                                 <% } %>
+                                <div id="form-area">
                                     <%- body %> <!-- Inject other views -->
+                                </div>
+                                    
 
                         </div>
 
