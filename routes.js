@@ -92,25 +92,6 @@ router.get('/projects', async (req, res) => {
     }
 });
 
-// Academic Project Dynamic Route
-router.get('/academic/:type', (req, res) => {
-    const { type } = req.params;
-
-    // Define allowed static pages
-    const allowedPages = {
-        "system-proposal-document": "system-proposal-document",
-        "communication-framework-and-training-plan": "communication-framework-and-training-plan"
-    };
-
-    // Check if the requested type exists in allowedPages
-    if (allowedPages[type]) {
-        res.render(`academic/${allowedPages[type]}`, { title: "Academic Project" });
-    } else {
-        res.status(404).render("404", { title: "Page Not Found" });
-    }
-});
-
-
 // Resume route
 router.get('/resume', async (req, res) => {
     try {
