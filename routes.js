@@ -191,10 +191,21 @@ router.post("/chat", async (req, res) => {
     }
 });
 
+// System Architecture route that displays how the website is set up and its documentation
+router.get('/architecture', async (req, res) => {
+    try {
+        const education = await Education.find();
+
+        res.render('architecture', {  title: 'System Architecture' });
+    } catch (err) {
+        console.error('Error loading System Architecture page', err);
+        res.status(500).send('Internal Server Error with /architecture route.');
+    }
+});
+
 // Catch-all route for 404 Not Found
 router.use((req, res) => {
     res.status(404).render('404', { title: "Page Not Found" });
 });
-
 
 module.exports = router;
