@@ -12,7 +12,7 @@ router.use((req, res, next) => {
 });
 
 // Login Route
-router.get('/', (req, res) => res.render('login', { title: "Login" }));
+router.get('/', (req, res) => res.redirect('/saint-gloopy-noops/login'));
 router.get('/login', (req, res) => res.render('login', { title: "Login" }));
 router.post('/login', async (req, res) => {
     try {
