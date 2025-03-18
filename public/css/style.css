@@ -15,6 +15,12 @@
 }
 
 /* General Styles */
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     /* Modern font */
@@ -195,6 +201,7 @@ header .container {
 /* Main Content */
 main {
     margin-top: 2rem;
+    flex: 1; /* Make main content expand to push the footer down */
 }
 
 main h1 {
@@ -316,8 +323,28 @@ main {
     align-items: center;
 }
 
+#page-not-found div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#page-not-found div div a {
+    padding: 15px;
+    background: var(--color-primary);
+    color: var(--color-header);
+    border-radius: 5px;
+    margin: 15px 15px;
+}
+
+#page-not-found div div a:hover {
+    background: var(--color-primary-hover);
+    transition: 0.5s;
+}
+
 .error-404 {
     width: 90%;
     border-radius: 15px;
+    margin-top: 5px;
 }
 
