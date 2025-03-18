@@ -1,0 +1,110 @@
+/* Set CSS Variables */
+form input[type="text"] {
+    padding: 10px; /* Add padding */
+    font-size: 16px; /* Increase font size */
+    border: none; 
+    border-radius: 2px; /* Rounded corners */
+    outline: none; /* Remove default focus outline */
+    transition: border-color 0.3s ease-in-out;
+}
+
+form input[type="password"] {
+    padding: 10px; /* Add padding */
+    font-size: 16px; /* Increase font size */
+    border: none; 
+    border-radius: 2px; /* Rounded corners */
+    outline: none; /* Remove default focus outline */
+    transition: border-color 0.3s ease-in-out;
+}
+
+form select {
+    padding: 10px; /* Add padding */
+    font-size: 16px; /* Increase font size */
+    border: none; 
+    border-radius: 2px; /* Rounded corners */
+    outline: none; /* Remove default focus outline */
+    transition: border-color 0.3s ease-in-out;
+}
+
+form button {
+    padding: 10px; /* Add padding */
+    font-size: 16px; /* Increase font size */
+    border: none; /* Light gray border */
+    color: var(--text);
+    background: var(--primary);
+    border-radius: 2px; /* Rounded corners */
+    outline: none; /* Remove default focus outline */
+    transition: border-color 0.3s ease-in-out;
+}
+
+.form-link {
+    color: --primary;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px 1px; /* Top and bottom padding */
+}
+
+/* --------------------------- */
+/* Log in and Sign out styling */
+/* --------------------------- */
+
+.login-signup {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background: var(--background);
+    padding: 10px;
+    width: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* Center it completely center */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login-signup form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Popup for if the user enters an incorrect username or password on login page */
+#popup {
+    display: none;
+    justify-content: center;
+    width: 80%;
+    background: #ff4444;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 2px;
+    font-size: 16px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+#form-area {
+    width: 97.5%;
+    min-height: 90%;
+    height: auto;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    padding: 5px;
+    background: white;
+    margin-top: 10px;
+}
+
+/* ----------------------- */
+/*      Media Queries      */
+/* ----------------------- */
+
+/* If height is less than 500px, increase login/signup margin */
+@media (max-height: 600px) {
+    .signup {
+        top: 60%;
+        padding-bottom: 50px;
+    }
+}
+

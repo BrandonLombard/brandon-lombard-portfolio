@@ -1,0 +1,522 @@
+<div class="academic-paper">
+    <div>
+        System Proposal Document
+        Brandon Lombard
+        IT-510: Advanced Info Technology
+        Southern New Hampshire University
+        March 8th, 2025
+        Instructor: Dr. Daniel Daniels 
+    </div>
+
+    <h3>Introduction</h3>
+    <p>Electronic Health Record systems (EHRs) are an important element in modern healthcare to enhance communication and
+    data management within healthcare facilities such as hospitals, clinics, and offices. Despite their benefits, they
+    also pose some risks, especially during initial implementation or system upgrades, where workflow changes and lack
+    of user familiarity may cause issues or errors. This document examines a case study in which a newly implemented EHR
+    system contributed to a diagnostic oversight at an OB/GYN practice. A physician failed to identify a Stage III
+    ovarian cancer diagnosis because the scanned lab report was not displayed in a user-friendly manner, leading to
+    confusion and critical mistakes. The financial, legal, and patient care consequences of such errors underscore the
+    need for a well-structured workflow management system. This proposal outlines the challenges associated with EHR
+    adoption, highlights the risks of diagnostic oversight, and presents a systematic approach to improving workflow
+    efficiency, reducing errors, and ensuring that healthcare providers can deliver safe and effective patient care.
+    </p>
+    <h4>Background</h4>
+    <p>The selected case study displays the consequences of EHR oversight during the implementation of a new system. In
+    this case study, an OB/GYN practice missed critical information for a patient in her fifties, whose family had a
+    strong history of breast cancer. Her doctor had ordered BRCA1 and BRCA2 analysis from the laboratory, where her
+    results were scanned into the OB/GYN practice’s EHR system. When the doctor reviewed the lab report, they failed to
+    identify critical information for a diagnosis in Stage III ovarian cancer. This is because while reviewing the
+    information, they scrolled too far down the page and failed to see the top of the report, where the diagnosis was
+    placed. When the provider scrolled towards the bottom of the report, it mistakenly said that no cancer was found,
+    which caused confusion for the provider and made it difficult to discern what information was correct. This
+    oversight stemmed from both user error and system challenges, due to the practice’s lack of understanding with the
+    new EHR system. The financial and legal repercussions for the healthcare provider highlight the need for proper
+    planning and execution when implementing EHR systems.</p>
+    <h4>Problem Statement</h4>
+    <p>The main problem is the diagnostic error caused by oversight and unfamiliarity with the newly implemented EHR
+    system, which resulted in poor patient care. This issue stems from a failure to correctly read scanned data,
+    accompanied by a lack of system training for staff, and poorly defined protocols for reviewing laboratory results.
+    Not only did this issue result in poor patient care, but also legal liability and financial loss for the healthcare
+    provider. Without properly addressing these issues, healthcare practices risk further diagnostic errors, increased
+    liability, and a reduced level of patient care.</p>
+    <h4>Audience</h4>
+    <p>The target audience for this proposal includes Healthcare Providers, Administrators, and the EHR Developers. Each
+    group has unique roles, responsibilities, and needs that must be addressed throughout the project to ensure its
+    success. Healthcare Providers include physicians, nurses, and other front-line medical staff who work directly in
+    the EHR system daily. This group requires up-to-date training materials, effective workflows, and clear protocols
+    for reviewing patient information. Healthcare Administrators, on the other hand, oversee both operational and
+    financial aspects of healthcare facilities. They need to ensure that the EHR system improves efficiency for
+    providers while reducing liability risks and complying with healthcare and state regulations. Finally, EHR
+    Developers are responsible for designing, implementing, and supporting the EHR system. They require detailed
+    feedback on system issues, workflows, and usability of the system.</p>
+    <p>To effectively communicate with these key stakeholders, the communication plan must be tailored to each group. For
+    the Healthcare Providers, this will include hands-on training sessions where they can learn the workflows and how to
+    find the needed data, while also having access to reference guides and documentation on how to use the system.
+    Additionally, a group of providers will be selected to regularly review the system to ensure it is functioning
+    correctly. Healthcare Administrators will receive regular updates and reports on the system, to include outcomes of
+    patient care and feedback from providers. Finally, EHR Developers will be provided with detailed feedback from
+    providers and administrators alongside meeting frequently with other key stakeholders to address issues that are
+    found. By ensuring each group’s needs and concerns are addressed, the project aims to enhance the success of the EHR
+    implementation while minimizing errors that could negatively impact patient care.</p>
+    <h3>Systems Requirements</h3>
+    <h4>Requirements Modeling</h4>
+    <p>To improve the current EHR system with a workflow management system, the requirements have been identified as shown
+    below. This system will address key challenges in patient diagnosis management, task tracking, and collecting
+    feedback to improve workflow efficiency, reduce errors, and ensure regulation compliance. This new system will
+    introduce structured processes to alert providers about critical diagnoses, utilize task management, and streamline
+    user feedback. These improvements aim to mitigate the risks of diagnostic oversight and enhance the overall
+    effectiveness of the healthcare environment.</p>
+    The following <b>Outputs</b> will be used in the system:
+    <ul>
+    <li>This system must include critical diagnoses alerts, which will generate real-time alerts for critical patient
+    diagnoses to notify healthcare providers and management immediately.</li>
+    <li>There will be automated notifications that will be sent to providers and management when tasks are assigned to a
+    provider.</li>
+    <li>Consolidated reports of user feedback for the EHR development team so they can continuously improve the EHR
+    system.</li>
+    </ul>
+    The following <b>Inputs</b> will be used:
+    <ul>
+    <li>Input fields will be used to capture and update patient diagnosis information accurately after laboratory results
+    are submitted.</li>
+    <li>Training completion data tracking which training the providers and staff have completed in the workflow management
+    system.</li>
+    <li>A user feedback form will be utilized so that providers and other staff can input their feedback directly within
+    the EHR system.</li>
+    </ul>
+    The following <b>Process</b> will be used:
+    <ul>
+    <li>Automatically trigger alerts for critical patient diagnoses, which will notify both the healthcare provider
+    working with the patient and the management team.</li>
+    The following Performance metrics will be used:
+    <li>The system should display important alerts within seconds of receiving the critical diagnosis trigger event.</li>
+    <li>The system should be capable of handling inputs from multiple users simultaneously without performance issues.</li>
+    <li>The system should ensure a 99.9% up time to support continuous healthcare operations.</li>
+    </ul>
+    The following <b>Controls (Security)</b> will be used:
+    <ul>
+    <li>All patient and user data must have encrypted data to comply with HIPPA regulations (Office of the National
+    Coordinator for Health Information Technology, n.d.).</li>
+    <li>There will be role-based access controls to make sure that only authorized users can access or modify this
+    sensitive information</li>
+    <li>Detailed logs of all system access and modifications for auditing will be in place.</li>
+    </ul>
+    <h4>Business Process Model</h4>
+    <p>Business processes play a crucial role in ensuring efficiency, accuracy, and accountability within healthcare
+    systems. Below is a business process model diagram that illustrates how the new workflow management system in the
+    Electronic Health Records system processes will function to enhance patient safety and reduce diagnostic errors. To
+    begin, a lab report will be processed and sent to the workflow management system which will then determine if it is
+    a critical diagnosis or not. If it is, the provider will be required to review the findings and determine the
+    critical diagnosis. From there, the provider will have 24 hours to review these findings. If they do not review the
+    diagnosis, the findings will be reported directly to management who will either follow up with the provider or
+    finish the process themselves. If the provider reviews the diagnosis, they will then notify the patient and confirm
+    in the system that the patient has been notified. After this process, they will be asked to provide feedback on the
+    workflow management system so that the EHR developers can continue to improve the new system.</p>
+    
+    <b>Figure 1</b><br>
+    <i>Business Process Model Diagram for the Workflow Management System</i><br>
+
+    <img src="/images/portfolio_projects/academic/system-proposal-document/business-process-model-diagram.png">
+
+    <h4>Data Flow Diagram</h4>
+    <p>The process begins with the Lab, which generates a report and stores it in the Reports Database (D1) before sending
+    it to the Provider. If the diagnosis is critical, the provider is notified and must review the report (Process 2)
+    within 24 hours; otherwise, it is escalated to Management (D2). After reviewing, the provider notifies the patient
+    (Process 3) through calls and documentation, with the system recording the details. Finally, the provider submits
+    feedback (Process 4), which is stored in the Feedback Database (D3) to support system improvements.</p>
+    <b>Figure 2</b><br>
+    <i>Data Flow Diagram for the Workflow Management System</i><br>
+
+    <img src="/images/portfolio_projects/academic/system-proposal-document/data-flow-diagram.png">
+
+    <h4>Data Dictionary</h4>
+    <p>The data dictionary for the workflow management system requires multiple field names with various data types. The
+    data dictionary includes key fields such as lab_report_id, patient_id, and provider_id, which are uniquely assigned
+    to each lab report, patient, and provider, respectively. Additionally, fields like critical_status (Boolean)
+    determine whether a diagnosis requires urgent attention, while alert_timestamp (DateTime) records when alerts are
+    triggered. Other fields, such as review_status and escalation_status, track the review process, ensuring that
+    providers address critical diagnoses promptly. Lastly, feedback_provided and feedback_comments store input from
+    users, supporting continuous system improvements. By structuring the data elements in a standardized format, the
+    data dictionary enhances system reliability, facilitates integration, and ensures compliance with data governance
+    policies.</p>
+    <b>Table 1</b><br>
+    <i>Data Dictionary Table for the Workflow Management System</i>
+    <table>
+        <tr>
+            <th>Field Name</th>
+            <th>Data Type</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>lab_report_id</td>
+            <td>Integer</td>
+            <td>Unique identifier for each lab report that is produced.</td>
+        </tr>
+        <tr>
+            <td>patient_id</td>
+            <td>Integer</td>
+            <td>Unique identifier for each patient.</td>
+        </tr>
+        <tr>
+            <td>provider_id</td>
+            <td>Integer</td>
+            <td>Unique identifier for the provider.</td>
+        </tr>
+        <tr>
+            <td>diagnosis_code</td>
+            <td>Integer</td>
+            <td>System code that identifies the patient’s diagnosis.</td>
+        </tr>
+        <tr>
+            <td>critical_status</td>
+            <td>Boolean</td>
+            <td>Indicates whether a diagnosis is critical (True) or not critical (False).</td>
+        </tr>
+        <tr>
+            <td>alert_timestamp</td>
+            <td>DateTime</td>
+            <td>The date and time the initial alert was produced.</td>
+        </tr>
+        <tr>
+            <td>review_status</td>
+            <td>Boolean</td>
+            <td>Indicates whether the diagnosis has been reviewed.</td>
+        </tr>
+        <tr>
+            <td>review_timestamp</td>
+            <td>DateTime</td>
+            <td>The date and time the lab results were reviewed by either the provider or management.</td>
+        </tr>
+        <tr>
+            <td>reviewed_by_id</td>
+            <td>Integer</td>
+            <td>The unique staff ID of who reviewed the diagnosis.</td>
+        </tr>
+        <tr>
+            <td>reviewed_by_id</td>
+            <td>Integer</td>
+            <td>The unique staff ID of who reviewed the diagnosis.</td>
+        </tr>
+        <tr>
+            <td>escalation_status</td>
+            <td>Boolean</td>
+            <td>Returns True if the diagnosis was escalated to management. </td>
+        </tr>
+        <tr>
+            <td>manager_id</td>
+            <td>Integer</td>
+            <td>Unique staff ID of the provider’s manager.</td>
+        </tr>
+        <tr>
+            <td>patient_notified</td>
+            <td>Boolean</td>
+            <td>Determines whether the patient was notified (True) or not (False).</td>
+        </tr>
+        <tr>
+            <td>patient_notified_timestamp</td>
+            <td>DateTime</td>
+            <td>The date and time that the patient was notified of the diagnosis.</td>
+        </tr>
+        <tr>
+            <td>feedback_provided</td>
+            <td>Boolean</td>
+            <td>Shows if the provider gave feedback (True) or not (False).</td>
+        </tr>
+        <tr>
+            <td>feedback_comments</td>
+            <td>String</td>
+            <td>If the provider gave feedback, their comments are displayed.</td>
+        </tr>
+    </table>
+    <h4>Object Modeling</h4>
+    <p>The object model for the workflow management system defines key entities and their interactions to ensure efficient
+    handling of patient diagnoses and alerts. The Provider object contains attributes such as the Provider ID, Name,
+    Phone Number, Role, and Training Status, allowing healthcare professionals to manage patient diagnoses effectively.
+    Its methods include Review Diagnosis, Notify Patient, and Submit Feedback, ensuring that critical cases are
+    addressed promptly. The Patient object stores Patient ID, Name, Diagnosis, Phone Number, and Email, enabling
+    seamless communication and ensuring patients receive timely notifications through the Receive Notification method.
+    The Manager object is responsible for overseeing providers and workflow operations, with attributes including
+    Manager ID, Name, Email, Phone Number, Role, and Providers Managing. Managers play a crucial role in monitoring
+    system activities, as reflected in their methods: Receive Alerts, Monitor Reports, and Notify Patient. This
+    object-oriented approach improves system modularity, scalability, and maintainability, ensuring that each entity has
+    clearly defined roles and interactions to enhance patient safety and workflow efficiency.</p>
+
+    <b>Figure 3</b><br>
+    <i>Object Models for the Workflow Management System</i><br>
+
+    <img src="/images/portfolio_projects/academic/system-proposal-document/object-models.png">
+
+    <h4>Use Case Diagram</h4>
+    <p>The Use Case Diagram illustrates the interactions between key actors, such as the Lab, Provider, Manager, Patient,
+    and Developers, and the workflow management system. The process begins when the Lab provides a diagnosis, which is
+    then checked for critical conditions. If the diagnosis is critical, the system notifies the Provider, who must
+    review the diagnosis within 24 hours. If the Provider does not review it in time, an escalation notification is sent
+    to the Manager. Once reviewed, the Provider notifies the Patient about their diagnosis. Additionally, the system
+    allows the Provider to submit feedback, which is directed to Developers for continuous system improvement. This
+    structured workflow ensures timely diagnosis review, accountability, and improved patient safety, reducing the risk
+    of missed critical diagnoses.</p>
+
+    <b>Figure 4</b><br>
+    <i>Use Case diagram for the Workflow Management System</i><br>
+
+    <img src="/images/portfolio_projects/academic/system-proposal-document/use-case-diagram.png">
+
+    <h3>Systems Design</h3>
+    <h4>Specifications</h4>
+    <p>This system is designed with a scalable web-based architecture hosted on AWS, leveraging an Elastic Load Balancer to
+    distribute traffic efficiently across application instances running on AWS EC2. The Node.js/Express backend handles
+    business logic, while an OAuth-based authentication service ensures secure access. MongoDB is used for database
+    management, supporting high availability and real-time updates for tracking critical patient diagnoses. AWS S3
+    provides file storage for records and supporting documents. The system is optimized for both desktop and mobile,
+    ensuring accessibility, while real-time updates enhance workflow efficiency for healthcare providers.</p>
+    <b>Figure 5</b><br>
+    <i>Physical Design of the Workflow Management System</i><br>
+    <img src="/images/portfolio_projects/academic/system-proposal-document/physical-design.png">
+
+    <h4>Data Design</h4>
+    <p>The data design process begins with a diagnosis report being produced by the Laboratory, which is then interpreted
+    by the Workflow Management System and assigned to the Provider. At this stage, the Provider has several options:
+    they can review the diagnosis and notify the patient, escalate the case to management, and optionally provide
+    feedback on the system. The Laboratory has a one-to-zero, one, or many relationship with the Diagnosis Report, as a
+    single laboratory may generate no reports, a single report, or multiple reports for a patient. Each diagnosis report
+    is then assigned to a single Provider. If escalation is necessary, the case may be referred to one or multiple
+    managers, depending on the severity of the diagnosis or if a provider does not have time to review the diagnosis
+    within 24 hours. When notifying the patient, there is a one-to-one relationship, as each provider corresponds with a
+    single patient. Lastly, if the Provider submits feedback on the system, there is a one-to-one or one-to-many
+    relationship, as multiple developers on the EHR team may review and act on the feedback.</p>
+
+    <b>Figure 6</b><br>
+    <i>Entity Relationship Diagram for the Workflow Management System</i><br>
+
+    <img src="/images/portfolio_projects/academic/system-proposal-document/entity-relationship-diagram.png">
+
+    <br>
+
+    <b>Table 2</b><br>
+    <i>Laboratory table</i><br>
+    <table>
+        <tr>
+            <th>Lab Report ID</th>
+            <th>Patient ID</th>
+            <th>Diagnosis</th>
+            <th>Critical?</th>
+            <th>Notes</th>
+        </tr>
+        <tr>
+            <td>189299</td>
+            <td>9210298374</td>
+            <td>Breast Cancer</td>
+            <td>True</td>
+            <td>Immediate oncology consultation recommended.</td>
+        </tr>
+        <tr>
+            <td>189291</td>
+            <td>3893847390</td>
+            <td>Stage 4 Pancreatic Cancer</td>
+            <td>True</td>
+            <td>Consult oncologist ASAP</td>
+        </tr>
+        <tr>
+            <td>189287</td>
+            <td>0912374893</td>
+            <td>Severe Sepsis</td>
+            <td>True</td>
+            <td>ICU admission necessary</td>
+        </tr>
+    </table>
+    
+
+    Table 3
+    Diagnosis Report Table
+    Lab Report ID Patient ID Provider ID Diagnosis Report Status Date Received
+    189299 9210298374 P29883 Breast Cancer Pending Review 2025-03-04
+    189291 3893847390 P29883 Stage 4 Pancreatic Cancer Pending Review 2025-03-02
+    189287 0912374893 P29883 Severe Sepsis Notify Patient 2025-03-01
+
+    Table 4
+    Provider Table
+    Provider ID Provider Name Assigned Reports Phone Number
+    P29883 Dr. Glip-Glop [189287, 189291, 189299] 603-209-0920
+    P89281 Dr. Squanch [189311, 189328] 603-209-1222
+    P73894 Dr. Zorp [189323] 603-209-2222
+
+
+
+
+    Table 5
+    Management Table
+    Manager ID Manager Name Providers Managing Escalated Reports
+    M4822 Dr. Scribbles ['P29883', 'P29884'] [189299, 189291]
+    M4823 Dr. Wesley ['P29885'] [189287]
+
+    Table 6
+    Feedback Table
+    Provider ID Subject Comments
+    P29883 System Bug Error in diagnosis review submission.
+    P89281 UI Improvement Make patient phone number editable
+
+    Table 7
+    Patient table
+    Patient ID Patient Name Phone Number Patient Notified?
+    9210298374 Maria Clark 603-555-0198 False
+    3893847390 Emily Sanchez 603-555-0245 False
+    912374893 Robert Williams 603-555-0307 True
+
+    User Interface Design
+    This application will have a user-friendly interface, since many providers have busy schedules and need an easy and
+    efficient interface to navigate. This will be a widget, or data-driven application within the currently existing
+    Electronic Health Records system, so providers can have quick and easy access to it. The main dashboard (Figure 9)
+    displays all critical diagnoses assigned to a provider, prioritizing urgent cases and offering quick access to
+    required actions such as reviewing diagnoses or notifying patients. Upon selecting an action, a popup interface
+    provides detailed patient information with interactive checkboxes for reviewing, confirming inconsistencies, and
+    notifying the patient, streamlining decision-making (figure 10). The system focuses on usability through minimal
+    cognitive load, consistency, error prevention, responsiveness, and accessibility. A help page offers guidance for
+    navigation, while a feedback button allows providers to report issues and suggest improvements. The system is
+    designed to be intuitive, with a well-organized layout, consistent design elements, and easy navigation to help
+    providers complete tasks efficiently.
+
+
+
+
+
+
+
+    Figure 7
+    Workflow Management System Dashboard
+    Figure 8
+    Review Diagnosis and Notify Patient Screen
+
+    Figure 9
+    Help Screen for the Workflow management System
+
+
+
+
+
+
+
+
+
+    Figure 10
+    Provide Feedback Screen
+
+    System Architecture
+    The system architecture of the Workflow Management System is a three-tier model, separating the application into the
+    user interface, application server, and data server. Following modern best practices, the system is designed to
+    optimize data processing efficiency while maintaining strict security compliance (Rosenblatt, 2016, p. 331). It
+    integrates seamlessly with the existing EHR system to enhance accountability among healthcare providers while
+    ensuring HIPAA compliance for patient data protection. The cloud-based infrastructure, hosted on AWS, provides
+    scalability and cost-efficiency, reducing the need for on-premise servers. Role-based access control ensures that
+    only authorized personnel can access sensitive information. The system employs RESTful APIs to interface with EHR
+    databases, laboratory information management systems (LIMS), and provider management tools, ensuring real-time
+    updates and seamless data exchange. Automated audit logs track all modifications for compliance and accountability.
+    With a responsive web interface developed in HTML, CSS, and JavaScript, the system is accessible across both desktop
+    and mobile devices, enabling providers to efficiently manage critical diagnoses, escalate cases when necessary, and
+    ensure timely patient notifications without disrupting workflows
+    Feasibility Analysis
+    The proposed Workflow Management System presents a highly feasible solution to address the critical issue of missed
+    diagnoses in the current Electronic Health Records system. From an operational standpoint, this system enhances
+    efficiency by introducing structured workflows that ensure all critical diagnoses are reviewed and acted upon in a
+    timely manner. This mitigates the risk of oversight, as seen in the case of a patient whose breast cancer diagnosis
+    was overlooked due to the inefficiencies in the current system. By automating notifications, tracking response
+    times, and escalating unreviewed cases to management, the system ensures accountability and improves patient
+    outcomes. Since this application directly ties into the current EHR, it makes it easy to implement and use for
+    providers and management. Additionally, it leverages modern web technologies such as HTML, CSS, JavaScript, Node.js,
+    and MongoDB, ensuring scalability and reliability while role-based access control and encryption maintain HIPAA
+    compliance, securing patient data. The use of RESTful APIs allows smooth interoperability with laboratory systems
+    and provider dashboards, ensuring a real-time, automated workflow for managing critical diagnoses. This system will
+    be designed with horizontal scalability, which allows it to handle increasing users by distributing traffic across
+    multiple servers.
+    From a cost perspective, the initial expenses will primarily be for developing the system, ensuring security
+    compliance measures, and for staff training. Using AWS (Cloud-based infrastructure) will provide a cost-effective
+    solution by allowing dynamic resource allocation depending on user traffic on the application. Long-term maintenance
+    costs will include system updates, security patches, and support services, all which can be mitigated by using
+    open-source libraries and software development best practices. Additionally, the reduction in malpractice risks and
+    legal liabilities due to missed diagnoses further contributes to the system’s financial viability by potentially
+    lowering insurance premiums and legal expenses for healthcare organizations. The implementation timeline will be in
+    phases to minimize disruptions to current healthcare operations. In the initial phase, we will focus on developing
+    the dashboard and correctly retrieving information from the laboratory’s reports. The second phase will focus on
+    integrating the critical diagnosis alerts and escalation workflows into the dashboard. Finally, the last phase will
+    include the development in user feedback mechanisms. Each phase will include User Acceptance Testing, where selected
+    providers and staff will test the system for its workflow capability and for issues. Overall, this Workflow
+    Management System is a scalable, cost-effective, and essential improvement that directly addresses the current gaps
+    in patient diagnosis management while ensuring compliance, efficiency, and long-term adaptability.
+    Project Plan
+    Work Breakdown Structure
+    To implement a workflow management system, there must be a collaborative effort between EHR developers, the system
+    analyst, administrators, and providers. First, the EHR developers and the system analyst will be involved in
+    planning the design and architecture of the workflow management system. The developers will also be directly
+    involved in creating the custom forms and widgets, alongside the alert system implementation for this system after a
+    plan has been established. Not only this, but they will need to perform ongoing maintenance and updates to this
+    system, while ensuring security and compliance with HIPPA. Administrators, on the other hand, will have a direct
+    impact on how smoothly the system is implemented. They will oversee system development and manage project timelines
+    while being directly involved in stakeholder communication. They will also coordinate training of the new system and
+    ensure that the system adheres to regulatory standards and hospital policies. Finally, the providers will be
+    directly involved in testing the new system before implementation and providing feedback after implementation if any
+    issues arise or workflows could be improved.
+    Project Monitoring and Control Plan
+    Monitoring this project and having an efficient control plan is important in ensuring the success of this new
+    implementation. This plan includes project tracking, quality assurance, risk management, and change control
+    strategies. Project progress will be tracked with Jira, which is a common project management tool that can organize
+    tasks into sprints, assign specific tasks, log bug fixes, and track progress of a project. Additionally, we will
+    have weekly standup meetings between the administrators, the system analyst, and EHR developers to ensure the team
+    is on the same page. These meetings will align with the Agile methodology, which emphasizes frequent communication,
+    iterative development, and adaptability to project needs (Tilley & Rosenblatt, 2016, p. 22). Furthermore, quality
+    assurance and testing will be frequently used between the providers, administrators, and EHR developers. This will
+    include developers creating unit tests to verify individual components of the workflow management system,
+    administrators performing workflow testing to ensure seamless integration within the EHR, and providers conducting
+    user acceptance testing (UAT) to confirm that the system meets clinical needs. Security testing will also be
+    conducted to verify compliance with HIPAA regulations and data protection policies. Any issues identified during
+    testing will be logged as Jira tickets and prioritized for resolution.
+    To mitigate risks, a risk management strategy will be put in place as well. These risks can range from system
+    integration failure, provider resistance to adopting the new system, security issues, and workflow inefficiencies.
+    To address this, there will be pre-implementation pilot testing, comprehensive provider training, and weekly
+    security audits. Risk mitigation measures will also be documented and reviewed during weekly standup meetings.
+    Finally, there will be change control strategies to make sure future system updates are managed correctly. Any
+    modifications or issues must be submitted through Jira, which will then be reviewed then either approved or denied
+    by the administrators. Then, if approved, they will schedule these updates for upcoming sprints. This structured
+    approach will allow for continuous development and improvements while minimizing disruptions in the existing
+    workflow and EHR system.
+    Timeline
+    This timeline will consist of 5 phases: Planning, System Design and Architecture, Development, Integration and
+    Testing, and Training and Deployment. This project will span approximately 18 weeks, beginning with a week-long
+    planning phase, where project scope, responsibilities, and scope will be defined. Then, there will be a System
+    Design and Architecture phase, where the focus will be on analyzing the current HER system and designing the new
+    workflow management system so that the Development phase will go smoothly. Next, in development, the EHR team will
+    build the custom form, task management features, feedback reporting, and the critical findings alert system. Once
+    development is complete, it will be the Integration and Testing phase, where the developers, providers, and
+    administrators will work together to test the system and make sure it functions as designed. Finally, in the
+    Training and Deployment phase, all staff will be trained in the new system, and there will be a pilot launch session
+    where further feedback will be gathered. From here, the development team will make the necessary adjustments before
+    the system goes live. Refer to Figure 1 below for more information.
+    Figure 11
+    Workflow Management System Gantt Chart
+
+    Conclusion
+    Implementing this Workflow Management System within the existing Electronic Health Records System is important in
+    reducing diagnostic errors, increasing provider efficiency, and improving patient safety. This System Proposal
+    Document addresses the critical issue of missed diagnoses because of oversight and lack of user familiarity in the
+    current system, as demonstrated in the OB/GYN case study. By using structured alerts and task management alongside
+    provider feedback mechanisms, this proposed system ensures that that critical diagnoses are reviewed in a timely
+    manner and that healthcare providers are better equipped to manage patient information accurately. The proposed
+    solution balances technical feasibility, regulatory compliance, and user-centered design, leveraging modern web
+    technologies and cloud-based infrastructure for scalability and reliability. With a detailed implementation plan
+    that includes stakeholder training, risk mitigation strategies, and iterative testing, this system can be seamlessly
+    integrated into existing EHR environments. By prioritizing user experience, accountability, and patient care, this
+    Workflow Management System has the potential to significantly enhance healthcare operations, reduce liability risks,
+    and ultimately improve patient outcomes.
+
+
+
+
+
+    References
+    Cascella, L. M. (n.d.). Case study: Oversight in electronic health record causes a delay in ovarian cancer
+    diagnosis. MedPro Group. Retrieved January 12, 2025, from
+    https://www.medpro.com/cs-ehr-oversight-delay-diagnosis-ovarian-cancer
+
+    Tilley, S., & Rosenblatt, H. J. (2016). Systems Analysis and Design (11th ed.). Cengage Limited.
+    https://mbsdirect.vitalsource.com/books/9781337424202
+
+
+</div>

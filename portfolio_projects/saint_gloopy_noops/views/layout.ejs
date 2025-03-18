@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="/css/portfolio_projects/saint_gloopy_noops/style.css"> <!-- Base Styles -->
+    <link rel="stylesheet" href="/css/portfolio_projects/saint_gloopy_noops/forms.css"> <!-- Form Styles -->
+</head>
+
+<body>
+    <% if (currentPath==='/login' || currentPath==='/signup' ) { %>
+        <div class="hospital-image">
+            <% } %>
+                <!-- Top Navigation -->
+                <header>
+                    <div id="logo">
+                        <img src="/images/portfolio_projects/saint-gloopy-noops/logo.png">
+                        <div>ST. GLOOPY NOOPS HOSPITAL</div>
+                    </div>
+                    <!-- Links - Only if user is accessing the dashboard -->
+                    <% if (currentPath==='/dashboard' ) { %>
+                        <div id="links">
+                            <select name="clinical-forms" id="clinical-forms">
+                                <option value="">Clinical Forms</option>
+                                <option value="">Volvo</option>
+                                <option value="">Saab</option>
+                                <option value="">Mercedes</option>
+                                <option value="">Audi</option>
+                            </select>
+                            <select name="administrative-forms" id="administrative-forms">
+                                <option value="">Administrative Forms</option>
+                                <option value="">Volvo</option>
+                                <option value="">Saab</option>
+                                <option value="">Mercedes</option>
+                                <option value="">Audi</option>
+                            </select>
+
+                            <select name="billing-forms" id="billing-forms">
+                                <option value="">Billing Forms</option>
+                                <option value="">Volvo</option>
+                                <option value="">Saab</option>
+                                <option value="">Mercedes</option>
+                                <option value="">Audi</option>
+                            </select>
+
+                            <a href="#" title="Settings">⚙️</a> |
+                            <a href="#" title="Messages">✉️ 0</a>
+                        </div>
+                        <div id="account">
+                            <div id="profile">
+                                <img src="/images/portfolio_projects/saint-gloopy-noops/default-avatar.jpg"
+                                    id="user-picture-icon">
+                                <b><%- username %></b>
+                            </div>
+                            | <a href="/saint-gloopy-noops/logout">Logout</a>
+                        </div>
+                        <% } %>
+                </header>
+
+                <!-- Sidebar - Only if user is accessing the dashboard -->
+                <% if (currentPath==='/dashboard' ) { %>
+                    <div class="sidebar">
+                        <div id="patient-data">
+                            <img src="/images/portfolio_projects/saint-gloopy-noops/default-avatar.jpg"
+                                alt="Patient Image" class="profile-image">
+                            <p><strong>Patient Name</strong></p>
+                        </div>
+
+                        <div class="patient-profile">
+                            <p><strong>Age:</strong> 0</p>
+                            <p><strong>Blood Type:</strong> A POS</p>
+                            <p><strong>Last Visit:</strong> Sometime </p>
+                            <p><strong>Next Appointment:</strong> Sometime</p>
+                        </div>
+
+                        <!-- Forms List -->
+                        Hi<br>
+                        Hi<br>
+                    </div>
+                    <% } %>
+
+
+                        <!-- Main Content Area -->
+
+                        <div class="main-content">
+                            <% if (currentPath==='/dashboard' ) { %>
+                                <div class="searchbar" id="main-search">
+                                    <input type="text" placeholder="Search">
+                                    <button>🔎</button>
+                                </div>
+                                <% } %>
+                                <div id="form-area">
+                                    <%- body %> <!-- Inject other views -->
+                                </div>
+                                    
+
+                        </div>
+
+
+                        <!-- Footer -->
+                        <footer>
+                            &copy; 2025 Saint Gloopy Noops Hospital - All Rights Reserved
+                        </footer>
+                        <% if (currentPath==='/login' || currentPath==='/signup' ) { %>
+        </div>
+        <% } %>
+</body>
+
+</html>

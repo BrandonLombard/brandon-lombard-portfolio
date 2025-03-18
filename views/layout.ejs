@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/style.css"> <!-- Base Styles -->
     <link rel="stylesheet" href="/css/index.css"> <!-- index.ejs Custom Styles -->
     <link rel="stylesheet" href="/css/projects.css"> <!-- projects.ejs Custom Styles -->
+    <link rel="stylesheet" href="/css/portfolio_projects/academic/style.css"> <!-- Academic Projects Custom Styles -->
     <link rel="stylesheet" href="/css/resume.css"> <!-- resume.ejs Custom Styles -->
     <link rel="stylesheet" href="/css/about.css"> <!-- about.ejs Custom Styles -->
     <link rel="stylesheet" href="/css/contact.css"> <!-- contact.ejs Custom Styles -->
@@ -46,6 +47,16 @@
         <div class="container">
             <%- body %> <!-- Content from other views will be injected here -->
         </div>
+        <!--
+        Hidden for now until ChatGPT API is purchased
+        <div id="chatbot-container">
+            <div id="chatbox">
+                <div id="chat-messages"></div>
+                <input type="text" id="chat-input" placeholder="Ask me anything..." />
+                <button id="send-chat">Send</button>
+            </div>
+        </div>
+        -->
     </main>
 
     <footer>
@@ -56,6 +67,7 @@
     </footer>
 
     <script src="/js/script.js"></script>
+    <script src="/js/chatbot.js"></script>
 </body>
 
 </html>

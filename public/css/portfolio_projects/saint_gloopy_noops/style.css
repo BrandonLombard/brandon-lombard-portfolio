@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Set CSS Variables */
+:root {
+    --primary: #121C31; 
+    --secondary: #0C2D48;
+    --background: #f4f0ff;
+    --text: #ffffff; 
+    --sidebar-bg: #145DA0; 
+    --footer-bg: #121C31; 
+}
+
+/* Reset Margin and Padding */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+    font-family: Arial, sans-serif;
+    overflow: auto;
+    font-family: "Roboto", serif;
+}
+
+/* Top Navigation Bar */
+header {
+    background-color: var(--primary);
+    color: var(--text);
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+/* Wraps logo, links, and account info properly */
+.header-content {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Header Logo */
+#logo {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Orbitron", serif;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+#logo img {
+    height: 30px;
+    width: auto;
+}
+
+/* Navigation Links */
+#links {
+    display: flex;
+    gap: 15px;
+    padding: 25px;
+}
+
+#links a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+#links a:hover {
+    text-decoration: underline;
+}
+
+/* Signed In Account Info - Aligns to the Right */
+#account {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    background-color: var(--sidebar-bg); /* Slightly darker purple */
+    padding: 5px 10px;
+    margin-right: 35px;
+    border-radius: 2px;
+    color: var(--text);
+    margin-left: auto;
+}
+
+#profile {
+    display: flex;
+    align-items: center;
+}
+
+#profile img {
+    margin-right: 5px;
+}
+
+#user-picture-icon {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+#account a {
+    text-decoration: none;
+    color: var(--text);
+}
+
+/* Sidebar */
+.sidebar {
+    position: absolute;
+    top: 50px; /* Below header */
+    left: 0;
+    width: 250px;
+    min-height: 100vh;
+    background-color: var(--sidebar-bg);
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar a {
+    display: block;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.sidebar a:hover {
+    background-color: var(--secondary);
+}
+
+/* Main Content Area */
+.main-content {
+    margin-left: 250px; /* Same width as sidebar */
+    margin-top: 60px; /* Offset from fixed header */
+    padding: 20px;
+}
+
+/* Footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: var(--footer-bg);
+    color: var(--text);
+    text-align: center;
+    line-height: 40px;
+    font-size: 14px;
+}
+
+/* Patient Data Section */
+#patient-data {
+    width: 100%;
+    background-color: var(--sidebar-bg);
+    color: var(--text);
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Patient Profile Container */
+.patient-profile {
+    background-color: var(--background);
+    width: 100%;
+    font-size: 14px;
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding-left: 5px;
+}
+
+.patient-profile p {
+    margin: 5px 0;
+}
+
+.patient-profile strong {
+    color: var(--primary);
+}
+
+#patient-data .profile-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.searchbar {
+    width: 95%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 5px 15px;
+    background-color: #fff;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.searchbar input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 5px;
+    background: transparent;
+}
+
+.searchbar button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.searchbar button i {
+    font-size: 18px;
+    color: #888;
+}
+
+.hospital-image {
+    background: url('/images/portfolio_projects/saint-gloopy-noops/hospital.png');
+    background-size: cover;
+    height: 100vh;
+}
