@@ -3,8 +3,11 @@ const axios = require("axios");
 const ejs = require('ejs');
 const mongoose = require('mongoose');
 const ejsLayouts = require('express-ejs-layouts');
+const path = require('path');
 require('dotenv').config();
 const session = require('express-session');
+const router = express.Router();
+const favicon = require('serve-favicon');
 
 // -------------------- Database Connections --------------------
 // Portfolio Site Database
@@ -40,6 +43,9 @@ app.use(session({
     cookie: { secure: false }
 }));
 
+// Serve the favicon
+app.use(favicon(path.join(__dirname, 'public/images/', 'favicon.ico')));
+
 // Set view engine
 app.set('view engine', 'ejs');
 app.use(ejsLayouts);
@@ -52,6 +58,11 @@ const ehrRoutes = require('./portfolio_projects/saint_gloopy_noops/routes');
 
 app.use('/', portfolioRoutes);
 app.use('/saint-gloopy-noops', ehrRoutes);
+
+// Global 404 Catch-All (only triggers if no route was found in projects/main site)
+app.use((req, res) => {
+    res.status(404).render('404', { title: "Page Not Found" });
+});
 
 // -------------------- Start Server --------------------
 app.listen(PORT, () => {

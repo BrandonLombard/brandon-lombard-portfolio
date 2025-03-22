@@ -1,6 +1,6 @@
 <section class="projects">
     <h1 class="merriweather">My Projects</h1>
-    <p class="description">Below are some of the projects I have worked on. Click on a project to view it.
+    <p class="description">Below are some of the projects I have worked on. Click on one to view it.
     </p>
 
     <!-- Filter section -->
@@ -12,34 +12,30 @@
                 <label for="all">All Projects</label>
             </div>
 
-            <% if (projects && projects.length > 0) { %>
-                <% 
-                    const uniqueCategories = [...new Set(
-                        projects.flatMap(project => project.category ? project.category : [])
+            <% if (projects && projects.length> 0) { %>
+                <% const uniqueCategories=[...new Set( projects.flatMap(project=> project.category ? project.category :
+                    [])
                     )];
-            
+
                     if (uniqueCategories.length > 0) {
-                        uniqueCategories.forEach((category, index) => {
-                            const categoryId = `category-${index}`; // Generate unique ID
-                %>
-                            <div>
-                                <input type="checkbox" class="filter-checkbox" id="<%= categoryId %>" name="<%= category %>"
-                                    value="<%= category %>">
-                                <label for="<%= categoryId %>">
-                                    <%= category %>
-                                </label>
-                            </div>
-                <% 
-                        });
-                    } else { 
-                %>
-                    <p>Error loading categories.</p>
-                <% } %>
-            <% } else { %>
-                <p>Error loading categories.</p>
-            <% } %>
-            
-            
+                    uniqueCategories.forEach((category, index) => {
+                    const categoryId = `category-${index}`; // Generate unique ID
+                    %>
+                    <div>
+                        <input type="checkbox" class="filter-checkbox" id="<%= categoryId %>" name="<%= category %>"
+                            value="<%= category %>">
+                        <label for="<%= categoryId %>">
+                            <%= category %>
+                        </label>
+                    </div>
+                    <% }); } else { %>
+                        <p>Error loading categories.</p>
+                        <% } %>
+                            <% } else { %>
+                                <p>Error loading categories.</p>
+                                <% } %>
+
+
 
         </div>
     </section>
@@ -48,6 +44,14 @@
     <div class="project-list" id="project-list">
         <% projects.forEach(project=> { %>
             <div class="project-card" data-categories="<%= project.category ? project.category.join(', ') : '' %>">
+                <p class="project-category">
+                    <%= project.category %>
+                </p>
+                <p class="last-updated">
+                    📅 <%= new Date(project.last_updated).toLocaleDateString("en-US", { year: "numeric" ,
+                        month: "long" , day: "numeric" }) %>
+                </p>
+
                 <a href="<%= project.link %>" target="_blank">
                     <h2>
                         <%= project.title %>
@@ -56,12 +60,8 @@
                         <%= project.description %>
                     </p>
                     <img src="<%= project.image %>" />
-                    <p>
-                        <%= project.category %>
-                    </p>
-                    <p>Last Updated: <%= new Date(project.last_updated).toLocaleDateString("en-US", { year: "numeric" ,
-                            month: "long" , day: "numeric" }) %>
-                    </p>
+                    
+                    
                 </a>
             </div>
             <% }); %>
