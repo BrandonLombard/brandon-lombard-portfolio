@@ -28,4 +28,4 @@ function showPopup(message) {
     const popup = document.getElementById("popup");
     popup.innerText = message;
     popup.style.display = "flex";
-}
+} 
