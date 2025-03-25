@@ -52,6 +52,10 @@ app.use(ejsLayouts);
 app.set('layout', 'layout');
 app.use(express.static('public'));
 
+// Tracks the user on the website and some of their data
+const createTrackVisitor = require('./middleware/trackVisitor');
+app.use(createTrackVisitor(portfolioDB));
+
 // ✅ Import routes AFTER exporting databases
 const portfolioRoutes = require('./routes');
 const ehrRoutes = require('./portfolio_projects/saint_gloopy_noops/routes');

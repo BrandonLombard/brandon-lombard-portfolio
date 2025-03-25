@@ -131,3 +131,24 @@ function addFilterImage() {
         }
     });
 }
+
+// ------------------------
+// For Tracking cookies
+// ------------------------
+
+document.addEventListener('DOMContentLoaded', function () {
+    const consentGiven = localStorage.getItem('cookieConsent');
+    const popup = document.getElementById('cookieConsent');
+
+    if (!consentGiven) {
+      popup.style.display = 'block';
+    }
+
+    document.getElementById('acceptCookies').addEventListener('click', function () {
+      localStorage.setItem('cookieConsent', 'true');
+      popup.style.display = 'none';
+
+      // Optional: call your tracking API here
+      fetch('/track-consent', { method: 'POST' });
+    });
+  });

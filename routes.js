@@ -26,6 +26,7 @@ const About = portfolioDB.model('about', new mongoose.Schema({
 }));
 
 // Resume Page
+// Education in the Resume Page
 const Education = portfolioDB.model('education', new mongoose.Schema({
     type: { type: String, required: true },
     name: { type: String, required: true },
@@ -34,6 +35,7 @@ const Education = portfolioDB.model('education', new mongoose.Schema({
     date_graduated: { type: Date, required: false }
 }));
 
+// Work Experience in the Resume Page
 const WorkExperience = portfolioDB.model('work_experience', new mongoose.Schema({
     title: { type: String, required: true },
     company: { type: String, required: true },
@@ -50,7 +52,6 @@ const Contact = portfolioDB.model("contact", new mongoose.Schema({
     message: { type: String, required: true },
     createdAt: { type: Date, default: Date.now }
 }));
-
 
 // OpenAI API Setup
 const openai = new OpenAI({
@@ -201,6 +202,11 @@ router.get('/architecture', async (req, res) => {
         console.error('Error loading System Architecture page', err);
         res.status(500).send('Internal Server Error with /architecture route.');
     }
+});
+
+// Privacy Policy route
+router.get('/privacy-policy', (req, res) => {
+    res.render('privacy-policy', { title: 'Privacy Policy', success: null, error: null });
 });
 
 module.exports = router;
