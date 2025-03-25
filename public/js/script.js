@@ -12,6 +12,7 @@ const emojiMap = {
     'Online Games': '🎮',
     'Curriculum Projects': '📘',
     'Computer Software': '💻',
+    'APIs': '🔗',
 };
 
 // Hamburger menu toggle
