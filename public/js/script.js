@@ -13,6 +13,7 @@ const emojiMap = {
     'Curriculum Projects': '📘',
     'Computer Software': '💻',
     'APIs': '🔗',
+    'Front End Websites': '🎨',
 };
 
 // Hamburger menu toggle
