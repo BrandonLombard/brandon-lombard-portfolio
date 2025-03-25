@@ -1,0 +1,59 @@
+<div class="container my-5">
+    <h1 class="mb-3 text-center">Today's <span class="text-danger">Software Developer</span> Jobs</h1>
+    <p class="text-center text-muted mb-4">Only showing jobs posted in the last 24 hours</p>
+  
+    <form method="GET" action="/apps/jobs" class="row g-3 mb-5 justify-content-center align-items-end">
+      <div class="col-md-4">
+        <label class="form-label">Keyword</label>
+        <input type="text" class="form-control" name="keyword" placeholder="e.g. React, Python" value="<%= keyword %>">
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Location</label>
+        <input type="text" class="form-control" name="location" placeholder="e.g. Remote, New York" value="<%= location %>">
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-danger w-100">Search</button>
+      </div>
+    </form>
+  
+    <% if (error) { %>
+      <div class="alert alert-danger text-center"><%= error %></div>
+    <% } else if (jobs.length === 0) { %>
+      <div class="alert alert-warning text-center">No jobs found. Try adjusting your filters.</div>
+    <% } else { %>
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <% jobs.forEach(job => { %>
+          <div class="col">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body d-flex flex-column justify-content-between">
+                <div>
+                  <h5 class="card-title text-danger"><%= job.job_title %></h5>
+                  <h6 class="card-subtitle mb-2 text-muted"><%= job.employer_name %></h6>
+                  <p class="card-text small">
+                    <% if (job.salary_min && job.salary_max) { %>
+                      💰 <strong>Salary:</strong> <%= job.salary_currency %><%= job.salary_min %> - <%= job.salary_max %> / <%= job.salary_period %><br>
+                    <% } else { %>
+                      💰 <strong>Salary:</strong> Not listed<br>
+                    <% } %>
+                    🗓 <strong>Posted:</strong> <%= new Date(job.job_posted_at_datetime_utc).toLocaleString() %>
+                  </p>
+                </div>
+                <a href="<%= job.job_apply_link %>" target="_blank" class="btn btn-outline-danger mt-3">Apply Now</a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+
+    <% } %>
+  </div>
+  
+  <footer class="text-center mt-5 py-4 bg-light border-top">
+    <p class="mb-0 text-muted small">
+      Job data powered by the 
+      <a href="https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch" target="_blank" rel="noopener noreferrer">
+        JSearch API on RapidAPI</a>
+      | App by <a href="https://www.brandonlombard.com">Brandon Lombard</a>
+    </p>
+  </footer>
+  
