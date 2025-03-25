@@ -35,6 +35,7 @@ router.get('/jobs', async (req, res) => {
         const allJobs = response.data.data;
 
         res.render('jobs', {
+            layout: path.join(__dirname, 'views', 'layout'),
             title: 'Junior Developer Jobs (Last 24 Hours)',
             jobs: allJobs,
             keyword,
@@ -46,6 +47,7 @@ router.get('/jobs', async (req, res) => {
     } catch (error) {
         console.error("API Error:", error.response?.data || error.message);
         res.status(500).render('jobs', {
+            layout: path.join(__dirname, 'views', 'layout'),
             title: 'Junior Developer Jobs',
             jobs: [],
             error: 'Failed to fetch jobs',

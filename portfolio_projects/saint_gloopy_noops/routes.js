@@ -60,4 +60,9 @@ router.get('/logout', (req, res) => {
     req.session.destroy(() => res.redirect('/saint-gloopy-noops/login'));
 });
 
+// Catch-all route for 404 Not Found
+router.use((req, res) => {
+    res.status(404).render('404', { title: "Page Not Found" });
+});
+
 module.exports = router;
