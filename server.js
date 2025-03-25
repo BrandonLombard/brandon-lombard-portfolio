@@ -55,9 +55,11 @@ app.use(express.static('public'));
 // ✅ Import routes AFTER exporting databases
 const portfolioRoutes = require('./routes');
 const ehrRoutes = require('./portfolio_projects/saint_gloopy_noops/routes');
+const miniAppRoutes = require('./portfolio_projects/mini-apps/routes');
 
 app.use('/', portfolioRoutes);
 app.use('/saint-gloopy-noops', ehrRoutes);
+app.use('/apps', miniAppRoutes);
 
 // Global 404 Catch-All (only triggers if no route was found in projects/main site)
 app.use((req, res) => {
