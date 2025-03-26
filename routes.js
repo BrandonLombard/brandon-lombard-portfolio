@@ -1,62 +1,15 @@
-// This file includes the mongoose schema and models that are then used in the routes
-
-// ------------------------------------------------
-//           Mongoose Schema and Models           -
-// ------------------------------------------------
+const bcrypt = require('bcrypt');
 const axios = require("axios");
-const mongoose = require('mongoose');
-const OpenAI = require("openai"); // Import OpenAI library
-const { portfolioDB } = require('./server.js'); // Import Portfolio DB
 
-// Portfolio page
-const Project = portfolioDB.model('projects', new mongoose.Schema({
-    title: { type: String, required: true },
-    description: { type: String, required: true },
-    category: { type: [String], required: true },
-    image: { type: String, required: true },
-    link: { type: String, required: true },
-    last_updated: { type: Date, required: true }
-}));
-
-// About Page
-const About = portfolioDB.model('about', new mongoose.Schema({
-    tagline: { type: String, required: true },
-    interests: { type: [String], required: true },
-    about_me: { type: [String], required: true }
-}));
-
-// Resume Page
-// Education in the Resume Page
-const Education = portfolioDB.model('education', new mongoose.Schema({
-    type: { type: String, required: true },
-    name: { type: String, required: true },
-    concentration: { type: String, required: false },
-    school: { type: String, required: true },
-    date_graduated: { type: Date, required: false }
-}));
-
-// Work Experience in the Resume Page
-const WorkExperience = portfolioDB.model('work_experience', new mongoose.Schema({
-    title: { type: String, required: true },
-    company: { type: String, required: true },
-    start_date: { type: Date, required: true },
-    end_date: { type: Date, required: false },
-    bullet_points: { type: [String], required: true }
-}));
-
-// Contact Page 
-const Contact = portfolioDB.model("contact", new mongoose.Schema({
-    name: { type: String, required: true },
-    email: { type: String, required: true },
-    phoneNumber: { type: String, required: false },
-    message: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now }
-}));
-
-// OpenAI API Setup
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY, // Load API key from .env file
-});
+const {
+    Project,
+    About,
+    Education,
+    WorkExperience,
+    Contact,
+    AdminUser,
+    VisitorData
+  } = require('./models');
 
 // ------------------------------------------------
 //                      Routes                    -
@@ -170,6 +123,61 @@ router.post("/submit-form", async (req, res) => {
         });
     }
 });
+
+// Admin Route
+router.get('/admin', (req, res) => {
+    res.render('admin', { title: 'Admin', error: null });
+});
+
+router.post('/admin', async (req, res) => {
+    const { username, password } = req.body;
+
+    const admin = await AdminUser.findOne({ username });
+    if (!admin) {
+        return res.render('admin', { title: 'Admin', error: 'Invalid credentials' });
+    }
+
+    const match = await bcrypt.compare(password, admin.password);
+    if (!match) {
+        return res.render('admin', { title: 'Admin', error: 'Invalid credentials' });
+    }
+
+    req.session.isAuthenticated = true;
+    res.redirect('/admin-panel');
+});
+
+router.get('/logout', (req, res) => {
+    req.session.destroy(err => {
+        res.redirect('/admin');
+    });
+});
+
+function isAuthenticated(req, res, next) {
+    if (req.session.isAuthenticated) return next();
+    res.redirect('/admin');
+}
+
+router.get('/admin-panel', isAuthenticated, async (req, res) => {
+    try {
+      const visitors = await VisitorData.find().sort({ _id: -1 }).limit(100); // latest 100 visits
+      res.render('admin-panel', {
+        title: 'Admin Panel',
+        success: null,
+        error: null,
+        session: req.session,
+        visitors // ✅ pass it to EJS
+      });
+    } catch (err) {
+      console.error("Error loading visitor data:", err);
+      res.status(500).render("admin-panel", {
+        title: "Admin Panel",
+        error: "Could not load visitor data.",
+        success: null,
+        session: req.session,
+        visitors: []
+      });
+    }
+  });
 
 // OpenAI Chat Route
 router.post("/chat", async (req, res) => {

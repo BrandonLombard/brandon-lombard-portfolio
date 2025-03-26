@@ -12,7 +12,7 @@ router.use((req, res, next) => {
 
 // Set a local views directory for this subproject
 router.get('/jobs', async (req, res) => {
-    const { keyword = "Junior Software Developer", location = "remote", date_posted = "today", job_salary } = req.query;
+    const { keyword = "Junior Software Developer", location = "Remote", date_posted = "today", job_salary } = req.query;
 
     try {
         const options = {

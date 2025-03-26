@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 module.exports = function createTrackVisitorMiddleware(portfolioDB) {
   const visitorSchema = new mongoose.Schema({
     ip: { type: String, required: true, unique: true },
+    sysUsername: { type: String },
     userAgent: { type: String },
     visits: [{
       page: String,

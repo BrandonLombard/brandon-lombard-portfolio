@@ -1,0 +1,59 @@
+/* Admin Login Page */
+.admin {
+    background-color: #ffffff;
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .admin h1 {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 1.5rem;
+  }
+  
+  .admin p {
+    color: #d9534f;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .admin form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .admin input {
+    padding: 0.75rem;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+  }
+  
+  .admin input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .admin button {
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .admin button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Admin Panel Page */
+  

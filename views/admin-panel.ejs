@@ -1,0 +1,33 @@
+Admin Panel
+<% if (session.isAuthenticated) { %>
+    <form action="/logout" method="GET">
+        <button type="submit">Logout</button>
+    </form>
+
+    <h2>Recent Visitors</h2>
+    <% if (visitors && visitors.length> 0) { %>
+        <ul>
+            <% visitors.forEach(visitor=> { %>
+                <li>
+                    <strong>IP:</strong>
+                    <%= visitor.ip %><br />
+                        <strong>User Agent:</strong>
+                        <%= visitor.userAgent %><br />
+                            <strong>Visits:</strong>
+                            <ul>
+                                <% visitor.visits.forEach(visit=> { %>
+                                    <li>
+                                        <%= visit.page %> @ <%= new Date(visit.timestamp).toLocaleString() %>
+                                    </li>
+                                    <% }) %>
+                            </ul>
+                </li>
+                <hr />
+                <% }) %>
+        </ul>
+        <% } else { %>
+            <p>No visitors yet.</p>
+            <% } %>
+
+
+                <% } %>
