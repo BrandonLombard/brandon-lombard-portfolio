@@ -160,12 +160,14 @@ function isAuthenticated(req, res, next) {
 router.get('/admin-panel', isAuthenticated, async (req, res) => {
     try {
       const visitors = await VisitorData.find().sort({ _id: -1 }).limit(100); // latest 100 visits
+      const contact = await Contact.find();
       res.render('admin-panel', {
         title: 'Admin Panel',
         success: null,
         error: null,
         session: req.session,
-        visitors // ✅ pass it to EJS
+        visitors,
+        contact
       });
     } catch (err) {
       console.error("Error loading visitor data:", err);

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs'); // Use bcryptjs if bcrypt is causing issues
+const bcrypt = require('bcryptjs');
 
 module.exports = (dbConnection) => {
     if (!dbConnection || typeof dbConnection.model !== 'function') {

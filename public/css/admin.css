@@ -56,4 +56,61 @@
   }
   
   /* Admin Panel Page */
-  
+  /* Admin Panel Styling */
+.admin-panel {
+  width: 90%;
+}
+
+.logout-form {
+  text-align: right;
+  margin-bottom: 1.5rem;
+}
+
+.logout-form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-form button:hover {
+  background-color: #0056b3;
+}
+
+
+h2 {
+  margin-top: 2rem;
+  color: #333;
+}
+
+.card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.card p {
+  margin: 0.25rem 0;
+}
+
+.visitor-header {
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.toggle-arrow {
+  font-size: 1.2rem;
+  color: #555;
+}
