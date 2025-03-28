@@ -9,7 +9,7 @@ const {
     Contact,
     AdminUser,
     VisitorData
-  } = require('./models');
+} = require('./models');
 
 // ------------------------------------------------
 //                      Routes                    -
@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
 // About route
 router.get('/about', async (req, res) => {
     try {
-        const about = await About.find(); 
+        const about = await About.find();
         const aboutData = about[0];
         res.render('about', { about: aboutData, title: 'About' });
     } catch (err) {
@@ -72,17 +72,17 @@ router.post("/submit-form", async (req, res) => {
 
         // Check for missing form fields
         if (!name || !email || !message) {
-            return res.status(400).render("contact", { 
-                title: "Contact", 
-                error: "Name, email, and message are required." 
+            return res.status(400).render("contact", {
+                title: "Contact",
+                error: "Name, email, and message are required."
             });
         }
 
         // Check if CAPTCHA token is present
         if (!token) {
-            return res.status(400).render("contact", { 
-                title: "Contact", 
-                error: "CAPTCHA verification failed. Please try again." 
+            return res.status(400).render("contact", {
+                title: "Contact",
+                error: "CAPTCHA verification failed. Please try again."
             });
         }
 
@@ -98,9 +98,9 @@ router.post("/submit-form", async (req, res) => {
         );
 
         if (!captchaResponse.data.success) {
-            return res.status(400).render("contact", { 
-                title: "Contact", 
-                error: "CAPTCHA verification failed. Please try again." 
+            return res.status(400).render("contact", {
+                title: "Contact",
+                error: "CAPTCHA verification failed. Please try again."
             });
         }
 
@@ -109,17 +109,17 @@ router.post("/submit-form", async (req, res) => {
         await newContact.save();
 
         // Render the contact page with success message
-        res.render("contact", { 
-            title: "Contact", 
-            success: "Message received! I will get back to you soon.", 
-            hideForm: true 
+        res.render("contact", {
+            title: "Contact",
+            success: "Message received! I will get back to you soon.",
+            hideForm: true
         });
 
     } catch (error) {
         console.error("Error:", error);
-        res.status(500).render("contact", { 
-            title: "Contact", 
-            error: "Server Error. Please try again later." 
+        res.status(500).render("contact", {
+            title: "Contact",
+            error: "Server Error. Please try again later."
         });
     }
 });
@@ -130,21 +130,27 @@ router.get('/admin', (req, res) => {
 });
 
 router.post('/admin', async (req, res) => {
-    const { username, password } = req.body;
+    try {
+        const { username, password } = req.body;
 
-    const admin = await AdminUser.findOne({ username });
-    if (!admin) {
-        return res.render('admin', { title: 'Admin', error: 'Invalid credentials' });
+        const admin = await AdminUser.findOne({ username });
+        if (!admin) {
+            return res.render('admin', { title: 'Admin', error: 'Invalid credentials' });
+        }
+
+        const match = await bcrypt.compare(password, admin.password);
+        if (!match) {
+            return res.render('admin', { title: 'Admin', error: 'Invalid credentials' });
+        }
+
+        req.session.isAuthenticated = true;
+        res.redirect('/admin-panel');
+    } catch (err) {
+        console.error('Error during admin login:', err);
+        res.status(500).render('admin', { title: 'Admin', error: 'Something went wrong.' });
     }
-
-    const match = await bcrypt.compare(password, admin.password);
-    if (!match) {
-        return res.render('admin', { title: 'Admin', error: 'Invalid credentials' });
-    }
-
-    req.session.isAuthenticated = true;
-    res.redirect('/admin-panel');
 });
+
 
 router.get('/logout', (req, res) => {
     req.session.destroy(err => {
@@ -159,27 +165,27 @@ function isAuthenticated(req, res, next) {
 
 router.get('/admin-panel', isAuthenticated, async (req, res) => {
     try {
-      const visitors = await VisitorData.find().sort({ _id: -1 }).limit(100); // latest 100 visits
-      const contact = await Contact.find();
-      res.render('admin-panel', {
-        title: 'Admin Panel',
-        success: null,
-        error: null,
-        session: req.session,
-        visitors,
-        contact
-      });
+        const visitors = await VisitorData.find().sort({ _id: -1 }).limit(100); // latest 100 visits
+        const contact = await Contact.find();
+        res.render('admin-panel', {
+            title: 'Admin Panel',
+            success: null,
+            error: null,
+            session: req.session,
+            visitors,
+            contact
+        });
     } catch (err) {
-      console.error("Error loading visitor data:", err);
-      res.status(500).render("admin-panel", {
-        title: "Admin Panel",
-        error: "Could not load visitor data.",
-        success: null,
-        session: req.session,
-        visitors: []
-      });
+        console.error("Error loading visitor data:", err);
+        res.status(500).render("admin-panel", {
+            title: "Admin Panel",
+            error: "Could not load visitor data.",
+            success: null,
+            session: req.session,
+            visitors: []
+        });
     }
-  });
+});
 
 // OpenAI Chat Route
 router.post("/chat", async (req, res) => {
@@ -207,7 +213,7 @@ router.get('/architecture', async (req, res) => {
     try {
         const education = await Education.find();
 
-        res.render('architecture', {  title: 'System Architecture' });
+        res.render('architecture', { title: 'System Architecture' });
     } catch (err) {
         console.error('Error loading System Architecture page', err);
         res.status(500).send('Internal Server Error with /architecture route.');

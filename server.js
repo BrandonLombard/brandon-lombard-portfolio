@@ -15,20 +15,12 @@ const portfolioDB = mongoose.createConnection(
     `mongodb+srv://${encodeURIComponent(process.env.DB_USERNAME)}:${encodeURIComponent(process.env.DB_PASSWORD)}@brandon-lombard.ug8qz.mongodb.net/brandon-lombard-portfolio?retryWrites=true&w=majority`
 );
 
-// Saint Gloopy Noops EHR Database
-const ehrDB = mongoose.createConnection(
-    `mongodb+srv://${encodeURIComponent(process.env.DB_USERNAME)}:${encodeURIComponent(process.env.DB_PASSWORD)}@brandon-lombard.ug8qz.mongodb.net/saint-gloopy-noops?retryWrites=true&w=majority`
-);
-
 // Handle DB connection errors
 portfolioDB.on('error', console.error.bind(console, 'Portfolio DB connection error:'));
 portfolioDB.once('open', () => console.log('✅ Connected to Portfolio DB'));
 
-ehrDB.on('error', console.error.bind(console, 'EHR DB connection error:'));
-ehrDB.once('open', () => console.log('✅ Connected to EHR DB'));
-
 // ✅ Export databases before importing routes
-module.exports = { portfolioDB, ehrDB };
+module.exports = { portfolioDB };
 
 // -------------------- App Configuration --------------------
 const app = express();
@@ -58,11 +50,9 @@ app.use(createTrackVisitor(portfolioDB));
 
 // ✅ Import routes AFTER exporting databases
 const portfolioRoutes = require('./routes');
-const ehrRoutes = require('./portfolio_projects/saint_gloopy_noops/routes');
 const miniAppRoutes = require('./portfolio_projects/mini-apps/routes');
 
 app.use('/', portfolioRoutes);
-app.use('/saint-gloopy-noops', ehrRoutes);
 app.use('/apps', miniAppRoutes);
 
 // Global 404 Catch-All (only triggers if no route was found in projects/main site)
