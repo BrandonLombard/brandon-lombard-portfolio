@@ -7,45 +7,96 @@
         </form>
 
         <h2>Contact Form Submissions</h2>
-        <% if (contact && contact.length > 0) { %>
-            <% contact.forEach(contactSubmission => { %>
+        <% if (contact && contact.length> 0) { %>
+            <% contact.forEach(contactSubmission=> { %>
                 <div class="card">
-                    <p><strong>Name:</strong> <%= contactSubmission.name %></p>
-                    <p><strong>Email:</strong> <%= contactSubmission.email %></p>
-                    <p><strong>Message:</strong> <%= contactSubmission.message %></p>
-                    <p><strong>Date:</strong> <%= new Date(contactSubmission.createdAt).toLocaleString() %></p>
+                    <p><strong>Name:</strong>
+                        <%= contactSubmission.name %>
+                    </p>
+                    <p><strong>Email:</strong>
+                        <%= contactSubmission.email %>
+                    </p>
+                    <p><strong>Message:</strong>
+                        <%= contactSubmission.message %>
+                    </p>
+                    <p><strong>Date:</strong>
+                        <%= new Date(contactSubmission.createdAt).toLocaleString() %>
+                    </p>
                 </div>
-            <% }) %>
-        <% } else { %>
-            <p>No contact form data.</p>
-        <% } %>
+                <% }) %>
+                    <% } else { %>
+                        <p>No contact form data.</p>
+                        <% } %>
 
-        <h2>Recent Visitors</h2>
-        <% if (visitors && visitors.length > 0) { %>
-            <% visitors.forEach((visitor, index) => { %>
-                <div class="card">
-                    <div class="visitor-header" onclick="toggleVisitorDetails(<%= index %>)">
-                        <strong>Visitor IP:</strong> <%= visitor.ip %>
-                        <span class="toggle-arrow">▼</span>
-                    </div>
-                    <div class="visitor-details" id="visitor-<%= index %>">
-                        <p><strong>User Agent:</strong> <%= visitor.userAgent %></p>
-                        <p><strong>Visits:</strong></p>
-                        <ul>
-                            <% visitor.visits.forEach(visit => { %>
-                                <li><%= visit.page %> @ <%= new Date(visit.timestamp).toLocaleString() %></li>
-                            <% }) %>
-                        </ul>
-                    </div>
-                </div>
-            <% }) %>
-        <% } else { %>
-            <p>No visitors yet.</p>
-        <% } %>
+                            <h2>Recent Visitors</h2>
 
-    <% } else { %>
-        <p>You must be logged in to view this page.</p>
-    <% } %>
+                            <details>
+                                <summary><strong>Real Users (<%= realVisitors.length %>)</strong></summary>
+                                <% if (realVisitors.length> 0) { %>
+                                    <% realVisitors.forEach((visitor, index)=> { %>
+                                        <div class="card">
+                                            <div class="visitor-header"
+                                                onclick="toggleVisitorDetails('real-<%= index %>')">
+                                                <strong>Visitor IP:</strong>
+                                                <%= visitor.ip %>
+                                                    <span class="toggle-arrow">▼</span>
+                                            </div>
+                                            <div class="visitor-details" id="visitor-real-<%= index %>">
+                                                <p><strong>User Agent:</strong>
+                                                    <%= visitor.userAgent %>
+                                                </p>
+                                                <p><strong>Visits:</strong></p>
+                                                <ul>
+                                                    <% visitor.visits.forEach(visit=> { %>
+                                                        <li>
+                                                            <%= visit.page %> @ <%= new
+                                                                    Date(visit.timestamp).toLocaleString() %>
+                                                        </li>
+                                                        <% }) %>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <% }) %>
+                                            <% } else { %>
+                                                <p>No real users yet.</p>
+                                                <% } %>
+                            </details>
+
+                            <details>
+                                <summary><strong>Bots (<%= botVisitors.length %>)</strong></summary>
+                                <% if (botVisitors.length> 0) { %>
+                                    <% botVisitors.forEach((visitor, index)=> { %>
+                                        <div class="card">
+                                            <div class="visitor-header"
+                                                onclick="toggleVisitorDetails('bot-<%= index %>')">
+                                                <strong>Visitor IP:</strong>
+                                                <%= visitor.ip %>
+                                                    <span class="toggle-arrow">▼</span>
+                                            </div>
+                                            <div class="visitor-details" id="visitor-bot-<%= index %>">
+                                                <p><strong>User Agent:</strong>
+                                                    <%= visitor.userAgent %>
+                                                </p>
+                                                <p><strong>Visits:</strong></p>
+                                                <ul>
+                                                    <% visitor.visits.forEach(visit=> { %>
+                                                        <li>
+                                                            <%= visit.page %> @ <%= new
+                                                                    Date(visit.timestamp).toLocaleString() %>
+                                                        </li>
+                                                        <% }) %>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <% }) %>
+                                            <% } else { %>
+                                                <p>No bots recorded yet.</p>
+                                                <% } %>
+                            </details>
+
+                            <% } else { %>
+                                <p>You must be logged in to view this page.</p>
+                                <% } %>
 </div>
 
 <script src="/js/admin.js"></script>

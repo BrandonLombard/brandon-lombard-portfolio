@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const axios = require("axios");
+const crawlerUserAgents = require('crawler-user-agents'); // ✅ Bot detection library
 
 const {
     Project,
@@ -11,9 +12,6 @@ const {
     VisitorData
 } = require('./models');
 
-// ------------------------------------------------
-//                      Routes                    -
-// ------------------------------------------------
 const express = require('express');
 const router = express.Router();
 
@@ -37,8 +35,8 @@ router.get('/about', async (req, res) => {
 // Projects route
 router.get('/projects', async (req, res) => {
     try {
-        const projects = await Project.find(); // Fetch all projects from MongoDB
-        projects.sort((a, b) => new Date(b.last_updated) - new Date(a.last_updated)); // Sort newest to oldest
+        const projects = await Project.find();
+        projects.sort((a, b) => new Date(b.last_updated) - new Date(a.last_updated));
         res.render('projects', { projects, title: 'Projects' });
     } catch (err) {
         console.error('Error fetching projects:', err);
@@ -64,13 +62,12 @@ router.get('/contact', (req, res) => {
     res.render('contact', { title: 'Contact', success: null, error: null });
 });
 
-// Handle Contact Form Submission with Turnstile CAPTCHA Verification
+// Contact form
 router.post("/submit-form", async (req, res) => {
     try {
         const { name, email, phone, message } = req.body;
         const token = req.body["cf-turnstile-response"];
 
-        // Check for missing form fields
         if (!name || !email || !message) {
             return res.status(400).render("contact", {
                 title: "Contact",
@@ -78,7 +75,6 @@ router.post("/submit-form", async (req, res) => {
             });
         }
 
-        // Check if CAPTCHA token is present
         if (!token) {
             return res.status(400).render("contact", {
                 title: "Contact",
@@ -86,10 +82,8 @@ router.post("/submit-form", async (req, res) => {
             });
         }
 
-        // Verify Turnstile CAPTCHA with Cloudflare
-        const captchaVerifyUrl = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
         const captchaResponse = await axios.post(
-            captchaVerifyUrl,
+            "https://challenges.cloudflare.com/turnstile/v0/siteverify",
             new URLSearchParams({
                 secret: process.env.TURNSTILE_SECRET_KEY,
                 response: token
@@ -104,11 +98,9 @@ router.post("/submit-form", async (req, res) => {
             });
         }
 
-        // Save form data to MongoDB
         const newContact = new Contact({ name, email, phoneNumber: phone, message });
         await newContact.save();
 
-        // Render the contact page with success message
         res.render("contact", {
             title: "Contact",
             success: "Message received! I will get back to you soon.",
@@ -124,7 +116,7 @@ router.post("/submit-form", async (req, res) => {
     }
 });
 
-// Admin Route
+// Admin login
 router.get('/admin', (req, res) => {
     res.render('admin', { title: 'Admin', error: null });
 });
@@ -132,7 +124,6 @@ router.get('/admin', (req, res) => {
 router.post('/admin', async (req, res) => {
     try {
         const { username, password } = req.body;
-
         const admin = await AdminUser.findOne({ username });
         if (!admin) {
             return res.render('admin', { title: 'Admin', error: 'Invalid credentials' });
@@ -151,7 +142,7 @@ router.post('/admin', async (req, res) => {
     }
 });
 
-
+// Logout
 router.get('/logout', (req, res) => {
     req.session.destroy(err => {
         res.redirect('/admin');
@@ -163,56 +154,55 @@ function isAuthenticated(req, res, next) {
     res.redirect('/admin');
 }
 
+// ✅ Bot detection function using crawler-user-agents
+function isBot(userAgent) {
+    return crawlerUserAgents.some(bot => new RegExp(bot.pattern, 'i').test(userAgent || ''));
+}
+
+// Admin panel
 router.get('/admin-panel', isAuthenticated, async (req, res) => {
     try {
-        const visitors = await VisitorData.find().sort({ _id: -1 }).limit(100); // latest 100 visits
         const contact = await Contact.find();
+        const allVisitors = await VisitorData.find().sort({ _id: -1 }).limit(100);
+
+        const realVisitors = [];
+        const botVisitors = [];
+
+        for (const visitor of allVisitors) {
+            const detectedBot = isBot(visitor.userAgent);
+            if (visitor.isBot || detectedBot) {
+                botVisitors.push(visitor);
+            } else {
+                realVisitors.push(visitor);
+            }
+        }
+
         res.render('admin-panel', {
             title: 'Admin Panel',
-            success: null,
-            error: null,
             session: req.session,
-            visitors,
-            contact
+            realVisitors,
+            botVisitors,
+            contact,
+            success: null,
+            error: null
         });
     } catch (err) {
         console.error("Error loading visitor data:", err);
         res.status(500).render("admin-panel", {
             title: "Admin Panel",
-            error: "Could not load visitor data.",
-            success: null,
             session: req.session,
-            visitors: []
+            realVisitors: [],
+            botVisitors: [],
+            contact: [],
+            success: null,
+            error: "Could not load visitor data."
         });
     }
 });
 
-// OpenAI Chat Route
-router.post("/chat", async (req, res) => {
-    try {
-        const { message } = req.body;
-
-        if (!message) {
-            return res.status(400).json({ error: "Message is required." });
-        }
-
-        const completion = await openai.chat.completions.create({
-            model: "gpt-4o-mini",
-            messages: [{ role: "user", content: message }],
-        });
-
-        res.json({ response: completion.choices[0].message.content });
-    } catch (error) {
-        console.error("OpenAI API Error:", error);
-        res.status(500).json({ error: "Something went wrong with the AI response." });
-    }
-});
-
-// System Architecture route that displays how the website is set up and its documentation
+// System architecture
 router.get('/architecture', async (req, res) => {
     try {
-        const education = await Education.find();
-
         res.render('architecture', { title: 'System Architecture' });
     } catch (err) {
         console.error('Error loading System Architecture page', err);
@@ -220,7 +210,7 @@ router.get('/architecture', async (req, res) => {
     }
 });
 
-// Privacy Policy route
+// Privacy policy
 router.get('/privacy-policy', (req, res) => {
     res.render('privacy-policy', { title: 'Privacy Policy', success: null, error: null });
 });
