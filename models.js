@@ -15,6 +15,7 @@ const Project = portfolioDB.model('projects', new mongoose.Schema({
     last_updated: { type: Date, required: true }
 }));
 
+
 // About Page
 const About = portfolioDB.model('about', new mongoose.Schema({
     tagline: { type: String, required: true },
